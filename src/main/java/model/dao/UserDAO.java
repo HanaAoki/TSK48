@@ -13,6 +13,14 @@ import model.entity.UserBean;
  * @author 重松
  */
 public class UserDAO {
+	
+	/**
+	 * @param userId
+	 * @param password
+	 * @return Ub
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 */
 	public UserBean login(String userId, String password) throws SQLException, ClassNotFoundException {
 
 		String sql = "SELECT * FROM m_user WHERE user_id = ? AND password = ?";
