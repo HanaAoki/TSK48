@@ -3,6 +3,7 @@ package model.entity;
 public class CategoryBean {
 	private int categoryCode;
 	private String categoryName;
+	private String rahmen;
 	
 	public CategoryBean() {
 		
