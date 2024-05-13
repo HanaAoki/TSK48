@@ -39,6 +39,7 @@ public class TaskListDAO {
 			
 			while(res.next()) {
 				TaskBean task = new TaskBean();
+				int taskId = res.getInt("task_id");
 				String taskName = res.getString("task_name");
 				String categoryName = res.getString("category_name");
 				Date limitDate = res.getDate("limit_date");
@@ -46,6 +47,7 @@ public class TaskListDAO {
 				String statusName = res.getString("status_name");
 				String memo = res.getString("memo");
 				
+				task.setTaskId(taskId);
 				task.setTaskName(taskName);
 				task.setCategoryName(categoryName);
 				task.setLimitDate(limitDate);
