@@ -13,6 +13,9 @@ public class TaskBean {
 	private int statusId;
 	private String statusName;
 	private String memo;
+		
+	public TaskBean() {
+	}
 	
 	public int getTaskId() {
 		return taskId;
