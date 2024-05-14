@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.TaskListDAO;
 import model.entity.TaskBean;
@@ -32,6 +33,7 @@ public class TaskListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
+		HttpSession session = request.getSession();
 		
 		//準備
 		TaskListDAO taskListDao = new TaskListDAO();
@@ -44,7 +46,7 @@ public class TaskListServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("taskList", taskList);
+		session.setAttribute("taskList", taskList);
 		
 		rd.forward(request, response);
 	}
