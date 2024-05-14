@@ -6,7 +6,7 @@ package model.entity;
  */
 public class CategoryBean {
 	private int categoryId;
-	private String statusName;
+	private String categoryName;
 	
 	public CategoryBean() {
 		
@@ -27,17 +27,17 @@ public class CategoryBean {
 	}
 
 	/**
-	 * @return statusName
+	 * @return categoryName
 	 */
-	public String getStatusName() {
-		return statusName;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
 	/**
-	 * @param statusName セットする statusName
+	 * @param categoryName セットする categoryName
 	 */
-	public void setStatusName(String statusName) {
-		this.statusName = statusName;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	
 	
