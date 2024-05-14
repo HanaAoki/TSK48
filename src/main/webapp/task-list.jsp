@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>タスク一覧画面</title>
 <%
-List<TaskBean> taskList = (List<TaskBean>)request.getAttribute("taskList");
+List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 %>
 </head>
 <body>
@@ -24,7 +24,7 @@ List<TaskBean> taskList = (List<TaskBean>)request.getAttribute("taskList");
 		<td><%=task.getUserName()%></td>
 		<td><%=task.getStatusName()%></td>
 		<td><%=task.getMemo()%></td>
-		<td><a href="task-delete-confirm?<%=task.getTaskId()%>">削除</a></td>
+		<td><a href="task-delete-confirm?taskId=<%=task.getTaskId()%>">削除</a></td>
 	</tr>
 	<%
 		}
