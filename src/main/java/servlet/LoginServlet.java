@@ -16,6 +16,10 @@ import model.entity.UserBean;
 /**
  * Servlet implementation class LoginServlet
  */
+/**
+ * ログインの判定を行うサーブレットです
+ * @author 重松
+ */
 @WebServlet(name = "login-servlet", urlPatterns = { "/login-servlet" })
 public class LoginServlet extends HttpServlet {
 
