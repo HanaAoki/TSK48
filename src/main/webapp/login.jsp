@@ -9,7 +9,7 @@
 <body>
 ログイン画面
 
-<form action="LoginServlet" method="POST"><br>
+<form action="login-servlet" method="POST"><br>
 ユーザID：<input type="text" name = "user_id"><br>
 パスワード：<input type="password" name = "password"><br>
 <br>
