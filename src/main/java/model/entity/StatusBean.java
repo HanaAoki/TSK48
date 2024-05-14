@@ -5,7 +5,7 @@ package model.entity;
  * @author 青木春菜
  */
 public class StatusBean {
-	private int statusCode;
+	private String statusCode;
 	private String statusName;
 	
 	public StatusBean() {
@@ -15,16 +15,20 @@ public class StatusBean {
 	/**
 	 * @return statusCode
 	 */
-	public int getStatusCode() {
+	public String getStatusCode() {
 		return statusCode;
 	}
+
+
 
 	/**
 	 * @param statusCode セットする statusCode
 	 */
-	public void setStatusCode(int statusCode) {
+	public void setStatusCode(String statusCode) {
 		this.statusCode = statusCode;
 	}
+
+
 
 	/**
 	 * @return statusName

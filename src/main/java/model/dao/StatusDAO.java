@@ -35,7 +35,7 @@ public class StatusDAO {
 //			取り出してリストに入れる
 			while (res.next()) {
 				
-				statusBean.setStatusCode(res.getInt("status_code"));
+				statusBean.setStatusCode(res.getString("status_code"));
 				statusBean.setStatusName(res.getString("category_name"));
 				
 				statusList.add(statusBean);
