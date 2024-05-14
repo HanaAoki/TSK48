@@ -33,9 +33,11 @@ public class TaskListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 		
+		//準備
 		TaskListDAO taskListDao = new TaskListDAO();
 		List<TaskBean> taskList = new ArrayList<TaskBean>();
 		
+		//タスク一覧の取得、格納
 		try {
 			taskList = taskListDao.selectAllTask();
 		}catch(SQLException | ClassNotFoundException e) {
