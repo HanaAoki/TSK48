@@ -10,7 +10,7 @@ public class TaskBean {
 	private Date limitDate;
 	private int userId;
 	private String userName;
-	private int statusCode;
+	private String statusCode;
 	private String statusName;
 	private String memo;
 		
@@ -59,10 +59,10 @@ public class TaskBean {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public int getStatusId() {
+	public String getStatusId() {
 		return statusCode;
 	}
-	public void setStatusId(int statusId) {
+	public void setStatusId(String statusId) {
 		this.statusCode = statusId;
 	}
 	public String getStatusName() {
