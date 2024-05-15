@@ -20,7 +20,7 @@ for(TaskBean t : taskList){
 <body>
 	<table border=1>
 	
-	<tr><th>タスク名</th><td><%=task.getTaskId()%></td></tr>
+	<tr><th>タスク名</th><td><%=task.getTaskName()%></td></tr>
 	<tr><th>カテゴリ</th><td><%=task.getCategoryName()%></td></tr>
 	<tr><th>期限</th><td><%=task.getLimitDate()%></td></tr>
 	<tr><th>担当者</th><td><%=task.getUserName()%></td></tr>
