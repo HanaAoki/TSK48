@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.CategoryDAO;
-import model.dao.StatusDAO;
 import model.entity.UserBean;
 
 /**
@@ -54,15 +52,6 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("user", Ub);
 			}
 			
-//			categorydaoのインスタンス化
-			CategoryDAO categoryDAO = new CategoryDAO();
-			
-//			Statusdaoのインスタンス化
-			StatusDAO statusDAO = new StatusDAO();
-			
-//			categorybeanとstatusbeanのlistをセッションに入れる
-			session.setAttribute("categoryList", categoryDAO.selectCategory());
-			session.setAttribute("statusList", statusDAO.selectStatus());
 		
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
