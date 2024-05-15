@@ -40,9 +40,9 @@ public class StatusDAO {
 				statusList.add(statusBean);
 			}
 //			テスト
-			for (StatusBean statusBean : statusList) {
-				System.out.println(statusBean);
-			}
+//			for (StatusBean statusBean : statusList) {
+//				System.out.println(statusBean);
+//			}
 			
 //			リストを返す
 			return statusList;
