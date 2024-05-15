@@ -35,7 +35,7 @@ public class StatusDAO {
 				StatusBean statusBean = new StatusBean();
 				
 				statusBean.setStatusCode(res.getString("status_code"));
-				statusBean.setStatusName(res.getString("category_name"));
+				statusBean.setStatusName(res.getString("status_name"));
 				
 				statusList.add(statusBean);
 			}

@@ -7,7 +7,7 @@
 <title>メニュー画面</title>
 </head>
 <body>
-<form action="task-register.jsp" method="POST">
+<form action="get-category-status-servlet" method="POST">
 <input type="submit" value="タスク登録">
 <input type="submit" value="タスク一覧" formaction="task-list-servlet">
 <input type="submit" value="ログアウト" formaction="logout.jsp">
