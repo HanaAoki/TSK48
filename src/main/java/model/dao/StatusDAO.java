@@ -19,9 +19,6 @@ public class StatusDAO {
 //		返すリストの作成
 		List<StatusBean> statusList = new ArrayList<StatusBean>();
 		
-//		statusbeanのインスタンス化
-		StatusBean statusBean = new StatusBean();
-		
 //		sql文
 		String sql = "SELECT status_code, status_name FROM m_status";
 		
@@ -34,11 +31,17 @@ public class StatusDAO {
 			
 //			取り出してリストに入れる
 			while (res.next()) {
+//				statusbeanのインスタンス化
+				StatusBean statusBean = new StatusBean();
 				
 				statusBean.setStatusCode(res.getString("status_code"));
 				statusBean.setStatusName(res.getString("category_name"));
 				
 				statusList.add(statusBean);
+			}
+//			テスト
+			for (StatusBean statusBean : statusList) {
+				System.out.println(statusBean);
 			}
 			
 //			リストを返す

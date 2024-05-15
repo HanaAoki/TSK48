@@ -19,9 +19,6 @@ public class CategoryDAO {
 //		返すリストの作成
 		List<CategoryBean> categoryList = new ArrayList<CategoryBean>();
 		
-//		categorybeanのインスタンス化
-		CategoryBean categoryBean = new CategoryBean();
-		
 //		sql文
 		String sql = "SELECT category_id, category_name FROM m_category";
 		
@@ -35,10 +32,18 @@ public class CategoryDAO {
 //			取り出してリストに入れる
 			while (res.next()) {
 				
+//				categorybeanのインスタンス化
+				CategoryBean categoryBean = new CategoryBean();
+				
 				categoryBean.setCategoryId(res.getInt("category_id"));
 				categoryBean.setCategoryName(res.getString("category_name"));
 				
 				categoryList.add(categoryBean);
+			}
+			
+//			テスト
+			for (CategoryBean categoryBean : categoryList) {
+				System.out.println(categoryBean);
 			}
 			
 //			リストを返す
