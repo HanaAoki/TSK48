@@ -68,11 +68,15 @@ public class GetCategoryStatusServlet extends HttpServlet {
 //		Statusdaoのインスタンス化
 		StatusDAO statusDAO = new StatusDAO();
 		
+//		categorydaoのインスタンス化
+		UserListDAO userListDAO = new UserListDAO();
+		
 		try {
 //			categorybeanとstatusbeanのlistをセッションに入れる
 			HttpSession session = request.getSession();
 			session.setAttribute("categoryList", categoryDAO.selectCategory());
 			session.setAttribute("statusList", statusDAO.selectStatus());
+			session.setAttribute("userList", userListDAO.userList());
 			
 //			task-register.jspに遷移させる
 			RequestDispatcher rd = request.getRequestDispatcher("task-register.jsp");
