@@ -1,6 +1,6 @@
 package model.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class TaskBean {
 	private int taskId;
