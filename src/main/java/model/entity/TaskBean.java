@@ -59,11 +59,11 @@ public class TaskBean {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getStatusId() {
+	public String getStatusCode() {
 		return statusCode;
 	}
-	public void setStatusId(String statusId) {
-		this.statusCode = statusId;
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
 	}
 	public String getStatusName() {
 		return statusName;

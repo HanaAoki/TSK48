@@ -18,20 +18,23 @@ for(TaskBean t : taskList){
 %>
 </head>
 <body>
-	<table border=1>
+	<form action="task-delete-servlet" method="POST">
 	
+	<table border=1>
 	<tr><th>タスク名</th><td><%=task.getTaskName()%></td></tr>
 	<tr><th>カテゴリ</th><td><%=task.getCategoryName()%></td></tr>
 	<tr><th>期限</th><td><%=task.getLimitDate()%></td></tr>
 	<tr><th>担当者</th><td><%=task.getUserName()%></td></tr>
 	<tr><th>ステータス</th><td><%=task.getStatusName()%></td></tr>
 	<tr><th>メモ</th><td><%=task.getMemo()%></td></tr>
-	
 	</table>
-	<form action="task-delete-servlet" method="POST">
+	
 	<input type="hidden" name="taskId" value=<%=task.getTaskId()%>>
 	<input type="submit" value="削除">
-	<input type="submit" value="キャンセル" formaction="task-list-servlet">
+	</form>
+	
+	<form action="task-list-servlet" method="POST">
+	<input type="submit" value="キャンセル">
 	</form>
 </body>
 </html>
