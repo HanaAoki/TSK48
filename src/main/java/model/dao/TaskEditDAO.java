@@ -16,9 +16,9 @@ public class TaskEditDAO {
 		int count = 0;
 
 		String sql = "UPDATE t_task "
-				+ "SET item_name = ?, category_code = ?, price = ? "
-				+ "item_name = ?, category_code = ?, price = ? "
-				+ "WHERE item_code = ? ";
+				+ "SET task_name = ?, category_id = ?, limit_date = ? "
+				+ "status_code = ?, userid = ?, memo = ? "
+				+ "WHERE task_id = ? ";
 
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -26,15 +26,17 @@ public class TaskEditDAO {
 			String taskname = confirm.getTaskName();
 			int categoryid = confirm.getCategoryId();
 			Date limitdate = confirm.getLimitDate();
-			String price = confirm.getStatusId();
+			String userid =  confirm.getUserId();
+			String statuscode = confirm.getStatusCode();
+			String memo = confirm.getMemo();
 			int taskid = confirm.getTaskId();
-
+			
 			pstmt.setString(1, taskname);
 			pstmt.setInt(2, categoryid);
-			pstmt.setString(3, taskname);
-			pstmt.setString(4, taskname);
-			pstmt.setString(5, taskname);
-			pstmt.setInt(6, price);
+			pstmt.setDate(3, limitdate);
+			pstmt.setString(4, statuscode);
+			pstmt.setString(5, userid);
+			pstmt.setString(6, memo);
 			pstmt.setInt(7, taskid);
 
 			count = pstmt.executeUpdate();
