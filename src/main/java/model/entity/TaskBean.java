@@ -8,7 +8,7 @@ public class TaskBean {
 	private int categoryId;
 	private String categoryName;
 	private Date limitDate;
-	private int userId;
+	private String userId;
 	private String userName;
 	private String statusCode;
 	private String statusName;
@@ -47,10 +47,10 @@ public class TaskBean {
 	public void setLimitDate(Date limitDate) {
 		this.limitDate = limitDate;
 	}
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {

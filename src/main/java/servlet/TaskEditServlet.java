@@ -33,7 +33,7 @@ public class TaskEditServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		RequestDispatcher rd = request.getRequestDispatcher("*******");//編集完了画面のPath
+		RequestDispatcher rd = request.getRequestDispatcher("task-edit-result.jsp");//編集完了画面のPath
 		HttpSession session = request.getSession();
 		
 		TaskEditDAO taskEditDAO = new TaskEditDAO();
@@ -94,12 +94,13 @@ public class TaskEditServlet extends HttpServlet {
 		}
 		
 		if(count == 0) {
-			resultText = "タスク編集に失敗しました。";
+			resultText = "以下のタスク編集に失敗しました。";
 		}
 		if(count >0) {
-			resultText = count + "件のタスクを編集しました。";
+			resultText = count + "以下のタスクを編集しました。";
 		}
 		
+		request.setAttribute("task", task);
 		request.setAttribute("resultText", resultText);
 		
 		rd.forward(request, response);
