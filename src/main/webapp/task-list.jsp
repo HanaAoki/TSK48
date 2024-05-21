@@ -12,7 +12,7 @@ List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 <body>
 	<table border=1>
 	<tr>
-		<th>タスク名</th><th>カテゴリ</th><th>期限</th><th>担当者</th><th>ステータス</th><th>メモ</th><th>削除</th>
+		<th>タスク名</th><th>カテゴリ</th><th>期限</th><th>担当者</th><th>ステータス</th><th>メモ</th><th>編集</th><th>削除</th>
 	</tr>
 	<%
 		for(TaskBean task : taskList){
@@ -24,6 +24,7 @@ List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 		<td><%=task.getUserName()%></td>
 		<td><%=task.getStatusName()%></td>
 		<td><%=task.getMemo()%></td>
+		<td><a href="/get-category-status-servlet?taskId=<%=task.getTaskId()%>">編集</a></td>
 		<td><a href="task-delete-confirm.jsp?taskId=<%=task.getTaskId()%>">削除</a></td>
 	</tr>
 	<%
