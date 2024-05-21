@@ -28,7 +28,7 @@ List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 	<tr><th>タスク名</th><td><input type="text" name = "taskName"></td></tr>
 	
 	<tr><th>カテゴリ</th>
-	<td> <select name="categoryCode">
+	<td> <select name="categoryId">
 	 <%for (CategoryBean cb : categoryList) {%>
 		<option value="<%=cb.getCategoryId()%>"><%=cb.getCategoryName()%></option>
 		<% } %>
@@ -38,7 +38,7 @@ List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 	<tr><th>期限</th><td><input type="date" name = "limitDate"></td></tr>
 	
 	<tr><th>担当者</th>
-	<td> <select name="categoryCode">
+	<td> <select name="userId">
 	 <% for (UserBean ub : userList) { %>
 		<option value="<%=ub.getUserId()%>"><%=ub.getUserName()%></option>
 		<% } %>
@@ -46,7 +46,7 @@ List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 		</tr>
 		
 	<tr><th>ステータス</th>
-	<td> <select name="categoryCode">
+	<td> <select name="statusCode">
 	 <% for (StatusBean sb : statusList) { %>
 		<option value="<%=sb.getStatusCode()%>"><%=sb.getStatusName()%></option>
 		<% } %>
