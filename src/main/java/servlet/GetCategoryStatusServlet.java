@@ -41,6 +41,9 @@ public class GetCategoryStatusServlet extends HttpServlet {
 //		categorydaoのインスタンス化
 		UserListDAO userListDAO = new UserListDAO();
 		
+		int taskid = Integer.parseInt(request.getParameter("taskId"));
+		request.setAttribute("TaskId", taskid);
+		
 		try {
 //			categorybeanとstatusbeanのlistをセッションに入れる
 			HttpSession session = request.getSession();
@@ -85,5 +88,4 @@ public class GetCategoryStatusServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }

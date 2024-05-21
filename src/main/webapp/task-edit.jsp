@@ -8,7 +8,7 @@
 <%
 TaskBean task = new TaskBean();
 List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
-int taskId = Integer.parseInt(request.getParameter("taskId"));
+int taskId = (int)(request.getAttribute("taskId"));
 for(TaskBean t : taskList){
 	if(t.getTaskId() == taskId){
 		task = t;
