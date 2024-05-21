@@ -12,7 +12,8 @@ String resultText = (String)request.getAttribute("resultText");
 </head>
 <body>
 <h1><%=resultText%></h1>
-
+<%@ include file="user-name-header.jsp" %>
+<p>
 	<table border=1>
 	<tr><th>タスク名</th><td><%=task.getTaskName()%></td></tr>
 	<tr><th>カテゴリ</th><td><%=task.getCategoryName()%></td></tr>

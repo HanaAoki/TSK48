@@ -2,7 +2,10 @@
 
 <%
 	UserBean user = (UserBean) session.getAttribute("user");
-	String userName = user.getUserName();
+	String userName = "ゲスト";
+	if (user != null) {
+		userName = user.getUserName();
+	}
 %>
 
 <%=userName %>が使用中

@@ -10,6 +10,8 @@ List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 %>
 </head>
 <body>
+<%@ include file="user-name-header.jsp" %>
+<p>
 	<form action="get-category-status-servlet" method="GET">
 	<table border=1>
 	<tr>
