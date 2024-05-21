@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="model.entity.TaskBean,java.util.ArrayList,java.util.List"%>
+    import="model.entity.TaskBean,model.entity.CategoryBean,model.entity.UserBean,model.entity.StatusBean,java.util.ArrayList,java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +15,9 @@ for(TaskBean t : taskList){
 		break;
 	}
 }
-List<TaskBean> categoryList = (List<TaskBean>) session.getAttribute("categoryList");
-List<TaskBean> statusList = (List<TaskBean>) session.getAttribute("statusList");
-List<TaskBean> userList = (List<TaskBean>) session.getAttribute("userList");
+List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
+List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
+List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 %>
 <title>タスク編集画面</title>
 </head>
@@ -29,8 +29,8 @@ List<TaskBean> userList = (List<TaskBean>) session.getAttribute("userList");
 	
 	<tr><th>カテゴリ</th>
 	<td> <select name="categoryCode">
-	 <% for (TaskBean tb : categoryList) { %>
-		<option value="<%=tb.getCategoryId()%>"><%=tb.getCategoryName()%></option>
+	 <%for (CategoryBean cb : categoryList) {%>
+		<option value="<%=cb.getCategoryId()%>"><%=cb.getCategoryName()%></option>
 		<% } %>
 		</select></td>
 	<td><%=task.getCategoryName()%></td></tr>
@@ -39,16 +39,16 @@ List<TaskBean> userList = (List<TaskBean>) session.getAttribute("userList");
 	
 	<tr><th>担当者</th>
 	<td> <select name="categoryCode">
-	 <% for (TaskBean tb : userList) { %>
-		<option value="<%=tb.getUserId()%>"><%=tb.getUserName()%></option>
+	 <% for (UserBean ub : userList) { %>
+		<option value="<%=ub.getUserId()%>"><%=ub.getUserName()%></option>
 		<% } %>
 		</select></td>
 		<td><%=task.getUserName()%></td></tr>
 		
 	<tr><th>ステータス</th>
 	<td> <select name="categoryCode">
-	 <% for (TaskBean tb : statusList) { %>
-		<option value="<%=tb.getStatusCode()%>"><%=tb.getStatusName()%></option>
+	 <% for (StatusBean sb : statusList) { %>
+		<option value="<%=sb.getStatusCode()%>"><%=sb.getStatusName()%></option>
 		<% } %>
 		</select></td>
 		<td><%=task.getStatusName()%></td></tr>
