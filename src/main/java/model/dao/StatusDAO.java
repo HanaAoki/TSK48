@@ -20,7 +20,7 @@ public class StatusDAO {
 		List<StatusBean> statusList = new ArrayList<StatusBean>();
 		
 //		sql文
-		String sql = "SELECT status_code, status_name FROM m_status";
+		String sql = "SELECT status_code, status_name FROM m_status ORDER BY status_code";
 		
 //		db接続
 		try (Connection con = ConnectionManager.getConnection();

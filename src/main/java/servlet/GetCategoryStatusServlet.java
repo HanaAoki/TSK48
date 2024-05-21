@@ -65,14 +65,12 @@ public class GetCategoryStatusServlet extends HttpServlet {
 	 * メニュー画面からタスク登録画面へのサーブレット
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		categorydaoのインスタンス化
 		CategoryDAO categoryDAO = new CategoryDAO();
 		
-//		Statusdaoのインスタンス化
 		StatusDAO statusDAO = new StatusDAO();
 		
-//		categorydaoのインスタンス化
 		UserListDAO userListDAO = new UserListDAO();
+		
 		
 		try {
 //			categorybeanとstatusbeanのlistをセッションに入れる
@@ -84,7 +82,7 @@ public class GetCategoryStatusServlet extends HttpServlet {
 //			task-register.jspに遷移させる
 			RequestDispatcher rd = request.getRequestDispatcher("task-register.jsp");
 			rd.forward(request, response);
-		} catch (ClassNotFoundException | SQLException | ServletException | IOException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}

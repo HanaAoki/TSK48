@@ -41,6 +41,7 @@ public class TaskAddServlet extends HttpServlet {
 		List<CategoryBean> categoryList = (List) session.getAttribute("categoryList");
 		List<StatusBean> statusList = (List) session.getAttribute("statusList");
 		List<UserBean> userList = (List) session.getAttribute("userList");
+		
 //		入力されたものの取得
 		String taskName = request.getParameter("taskName");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
@@ -91,7 +92,7 @@ public class TaskAddServlet extends HttpServlet {
 			resultText = "以下のタスク登録に失敗しました。";
 		}
 		if(count >0) {
-			resultText = count + "以下のタスクを登録しました。";
+			resultText = "以下のタスクを登録しました。";
 		}
 		
 		request.setAttribute("task", taskBean);

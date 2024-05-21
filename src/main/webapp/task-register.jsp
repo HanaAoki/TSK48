@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, java.util.List, model.entity.CategoryBean, model.entity.StatusBean, model.entity.UserBean"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, java.util.List, java.time.LocalDate, model.entity.CategoryBean, model.entity.StatusBean, model.entity.UserBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +9,16 @@
 <body>
 <h1>タスク登録画面</h1>
 
+<%@ include file="user-name-header.jsp" %>
+
+<p>
+
 	<%
 	List<CategoryBean> categoryList = (List) session.getAttribute("categoryList");
 	List<StatusBean> statusList = (List) session.getAttribute("statusList");
 	List<UserBean> userList = (List) session.getAttribute("userList");
+	LocalDate today = LocalDate.now();
+	LocalDate tomorrow = today.plusDays(1);
 	%>
 
 	<table border="1">
@@ -22,7 +28,7 @@
 					タスク名
 				</th>
 				<td>
-					<input type="text" name="taskName" size="50" max="50">
+					<input type="text" name="taskName" size="50" max="50" required>
 				</td>
 			</tr>
 			<tr>
@@ -46,7 +52,7 @@
 					期限
 				</th>
 				<td>
-					<input type="date" name="taskLimit">
+					<input type="date" name="taskLimit" min="<%=today %>" value="<%=tomorrow %>" required>
 				</td>
 			</tr>
 			<tr>
@@ -92,8 +98,22 @@
 		</table>
 		<br>
 		
-		<input type="submit" value="登録">
+		<table>
+			<tr>
+				<td>
+					<input type="submit" value="登録">
+				</td>
+				<td>
+					<input type="reset" value="クリア">
+				</td>
 	</form>
+				<td>
+					<form action="menu.jsp" method="get">
+						<input type="submit" value="戻る">
+					</form>
+				</td>
+			</tr>
+	</table>
 
 </body>
 </html>
