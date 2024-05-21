@@ -65,12 +65,12 @@ public class TaskEditServlet extends HttpServlet {
 			}
 		}
 		for(StatusBean status : statusList) {
-			if(statusCode == status.getStatusCode()) {
+			if(statusCode.equals(status.getStatusCode())) {
 				statusName = status.getStatusName();
 			}
 		}
 		for(UserBean user : userList) {
-			if(userId == user.getUserId()) {
+			if(userId.equals(user.getUserId())) {
 				userName = user.getUserName();
 			}
 		}
