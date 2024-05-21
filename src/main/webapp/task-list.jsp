@@ -24,7 +24,7 @@ List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 		<td><%=task.getUserName()%></td>
 		<td><%=task.getStatusName()%></td>
 		<td><%=task.getMemo()%></td>
-		<td><a href="/get-category-status-servlet?taskId=<%=task.getTaskId()%>">編集</a></td>
+		<td><a href="get-category-status-servlet?taskId=<%=task.getTaskId()%>">編集</a></td>
 		<td><a href="task-delete-confirm.jsp?taskId=<%=task.getTaskId()%>">削除</a></td>
 	</tr>
 	<%
