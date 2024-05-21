@@ -13,14 +13,14 @@
 	List<UserBean> userList = (List) session.getAttribute("userList");
 	%>
 
-	<form action="TaskAddServlet" method="post">
+	<form action="task-add-servlet" method="post">
 		タスク名
 		<br>
 		<input type="text" name="taskName" size="50" max="50">
 		<br>
 		カテゴリ
 		<br>
-		<select name="categoryCode">
+		<select name="categoryId">
 		<%
 		for (CategoryBean categoryBean : categoryList) { 
 		%>
