@@ -1,6 +1,7 @@
 package model.entity;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public class TaskBean {
 	private int taskId;
@@ -77,4 +78,19 @@ public class TaskBean {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		TaskBean that = (TaskBean) o;
+		return 	categoryId == that.categoryId &&
+				Objects.equals(limitDate, that.limitDate) &&
+				Objects.equals(userId, that.userId) &&
+				Objects.equals(statusCode, that.statusCode) &&
+				Objects.equals(memo, that.memo) &&
+				Objects.equals(categoryName, that.categoryName);
+}
 }

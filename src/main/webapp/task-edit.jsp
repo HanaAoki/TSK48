@@ -18,6 +18,7 @@ for(TaskBean t : taskList){
 List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
 List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
+String sd = "selected";
 %>
 <title>タスク編集画面</title>
 </head>
@@ -25,17 +26,21 @@ List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 <form action="task-edit-servlet" method="POST">
 
 <table border=1>
-	<tr><th>タスク名</th><td><input type="text" name = "taskName"></td></tr>
+	<tr><th>タスク名</th><td><input type="text" value="<%=task.getTaskName()%>"  name= "taskName" required></td></tr>
 	
 	<tr><th>カテゴリ</th>
 	<td> <select name="categoryId">
 	 <%for (CategoryBean cb : categoryList) {%>
-		<option value="<%=cb.getCategoryId()%>"><%=cb.getCategoryName()%></option>
+		<option value="<%=cb.getCategoryId()%>"><%=cb.getCategoryName()%>
+		<%if(){
+			
+		}%>
+		</option>
 		<% } %>
 		</select></td>
 	</tr>
 	
-	<tr><th>期限</th><td><input type="date" name = "limitDate"></td></tr>
+	<tr><th>期限</th><td><input type="date" value="<%=task.getLimitDate()%>" name = "limitDate" required></td></tr>
 	
 	<tr><th>担当者</th>
 	<td> <select name="userId">
@@ -53,7 +58,7 @@ List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 		</select></td>
 		</tr>
 	
-	<tr><th>メモ</th><td><input type="text" name = "memo"></td></tr>
+	<tr><th>メモ</th><td><input type="text" value="<%=task.getMemo()%>" name = "memo"></td></tr>
 	
 	</table>
 	
