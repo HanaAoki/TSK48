@@ -33,7 +33,7 @@ List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 		<option value="<%=cb.getCategoryId()%>"><%=cb.getCategoryName()%></option>
 		<% } %>
 		</select></td>
-	<td><%=task.getCategoryName()%></td></tr>
+	</tr>
 	
 	<tr><th>期限</th><td><input type="date" name = "limitDate"></td></tr>
 	
@@ -43,7 +43,7 @@ List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 		<option value="<%=ub.getUserId()%>"><%=ub.getUserName()%></option>
 		<% } %>
 		</select></td>
-		<td><%=task.getUserName()%></td></tr>
+		</tr>
 		
 	<tr><th>ステータス</th>
 	<td> <select name="categoryCode">
@@ -51,7 +51,7 @@ List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 		<option value="<%=sb.getStatusCode()%>"><%=sb.getStatusName()%></option>
 		<% } %>
 		</select></td>
-		<td><%=task.getStatusName()%></td></tr>
+		</tr>
 	
 	<tr><th>メモ</th><td><input type="text" name = "memo"></td></tr>
 	
