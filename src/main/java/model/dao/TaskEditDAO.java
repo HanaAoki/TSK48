@@ -16,8 +16,8 @@ public class TaskEditDAO {
 		int count = 0;
 
 		String sql = "UPDATE t_task "
-				+ "SET task_name = ?, category_id = ?, limit_date = ? "
-				+ "status_code = ?, userid = ?, memo = ? "
+				+ "SET task_name = ?, category_id = ?, limit_date = ?, "
+				+ "status_code = ?, user_id = ?, memo = ? "
 				+ "WHERE task_id = ? ";
 
 		try (Connection con = ConnectionManager.getConnection();
@@ -26,8 +26,8 @@ public class TaskEditDAO {
 			String taskname = confirm.getTaskName();
 			int categoryid = confirm.getCategoryId();
 			Date limitdate = confirm.getLimitDate();
-			String userid =  confirm.getUserId();
 			String statuscode = confirm.getStatusCode();
+			String userid =  confirm.getUserId();
 			String memo = confirm.getMemo();
 			int taskid = confirm.getTaskId();
 			
