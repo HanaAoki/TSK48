@@ -51,7 +51,7 @@
 			</tr>
 			<tr>
 				<th>
-					ユーザー
+					担当者
 				</th>
 				<td>
 					<select name="userId">
