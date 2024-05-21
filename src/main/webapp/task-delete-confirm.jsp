@@ -21,6 +21,7 @@ for(TaskBean t : taskList){
 %>
 </head>
 <body>
+	<%@ include file="user-name-header.jsp" %>
 	<form action="task-delete-servlet" method="POST">
 	<%
 	for(TaskBean task : tasks){

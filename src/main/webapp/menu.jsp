@@ -7,6 +7,7 @@
 <title>メニュー画面</title>
 </head>
 <body>
+<%@ include file="user-name-header.jsp" %>
 <form action="get-category-status-servlet" method="POST">
 <input type="submit" value="タスク登録">
 <input type="submit" value="タスク一覧" formaction="task-list-servlet">

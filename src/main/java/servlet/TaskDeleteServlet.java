@@ -39,10 +39,6 @@ public class TaskDeleteServlet extends HttpServlet {
 		System.out.println(taskId.length);
 		int count = 0;
 		String resultText = "";
-
-		for(String str : taskId) {
-			System.out.println(str);
-		}
 		
 //		タスク削除を実行
 		try {

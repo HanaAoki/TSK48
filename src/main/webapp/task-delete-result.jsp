@@ -10,6 +10,7 @@ String resultText = (String)request.getAttribute("resultText");
 %>
 </head>
 <body>
+<%@ include file="user-name-header.jsp" %>
 <h1><%=resultText%></h1>
 <form action="menu.jsp" method="POST">
 <input type="submit" value="メニュー画面へ">
