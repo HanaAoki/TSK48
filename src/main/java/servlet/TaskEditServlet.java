@@ -50,28 +50,28 @@ public class TaskEditServlet extends HttpServlet {
 		int taskId = Integer.parseInt(request.getParameter("taskId"));//取得方法未定
 		String taskName = request.getParameter("taskName");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-		String categoryName = request.getParameter("categoryName");
+		String categoryName = "";
 		Date limitDate = Date.valueOf(request.getParameter("limitDate"));
 		String userId = request.getParameter("userId");
-		String userName = request.getParameter("userName");
-		String statusCode = "";
-		String statusName = request.getParameter("statusName");
+		String userName = "";
+		String statusCode = request.getParameter("statusCode");
+		String statusName = "";
 		String memo = request.getParameter("memo");
 		
 		//categoryId, statusCode, userIdの取得
-//		for(CategoryBean category : categoryList) {
-//			if(category.getCategoryName().equals(categoryName)) {
-//				categoryId = category.getCategoryId();
-//			}
-//		}
+		for(CategoryBean category : categoryList) {
+			if(categoryId == category.getCategoryId()) {
+				categoryName = category.getCategoryName();
+			}
+		}
 		for(StatusBean status : statusList) {
-			if(status.getStatusName().equals(statusName)) {
-				statusCode = status.getStatusCode();
+			if(statusCode == status.getStatusCode()) {
+				statusName = status.getStatusName();
 			}
 		}
 		for(UserBean user : userList) {
-			if(user.getUserName().equals(userName)) {
-				userId = user.getUserId();
+			if(userId == user.getUserId()) {
+				userName = user.getUserName();
 			}
 		}
 		
