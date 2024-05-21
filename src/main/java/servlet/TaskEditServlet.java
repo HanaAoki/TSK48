@@ -49,7 +49,7 @@ public class TaskEditServlet extends HttpServlet {
 		//いらないのが含まれているので後で消す。
 		int taskId = Integer.parseInt(request.getParameter("taskId"));//取得方法未定
 		String taskName = request.getParameter("taskName");
-		int categoryId = 0;
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		String categoryName = request.getParameter("categoryName");
 		Date limitDate = Date.valueOf(request.getParameter("limitDate"));
 		String userId = request.getParameter("userId");
@@ -59,11 +59,11 @@ public class TaskEditServlet extends HttpServlet {
 		String memo = request.getParameter("memo");
 		
 		//categoryId, statusCode, userIdの取得
-		for(CategoryBean category : categoryList) {
-			if(category.getCategoryName().equals(categoryName)) {
-				categoryId = category.getCategoryId();
-			}
-		}
+//		for(CategoryBean category : categoryList) {
+//			if(category.getCategoryName().equals(categoryName)) {
+//				categoryId = category.getCategoryId();
+//			}
+//		}
 		for(StatusBean status : statusList) {
 			if(status.getStatusName().equals(statusName)) {
 				statusCode = status.getStatusCode();

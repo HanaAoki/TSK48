@@ -11,7 +11,7 @@ String resultText = (String)request.getAttribute("resultText");
 %>
 </head>
 <body>
-<h1>resultText</h1>
+<h1><%=resultText%></h1>
 
 	<table border=1>
 	<tr><th>タスク名</th><td><%=task.getTaskName()%></td></tr>

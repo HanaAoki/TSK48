@@ -31,7 +31,7 @@ public class GetCategoryStatusServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 * タスク一覧表示画面からタスク編集画面へのサーブレット
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 //		categorydaoのインスタンス化
 		CategoryDAO categoryDAO = new CategoryDAO();
 		
