@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.TaskDeleteDAO;
 
@@ -29,13 +30,19 @@ public class TaskDeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
 		
 //		準備
 		RequestDispatcher rd = request.getRequestDispatcher("task-delete-result.jsp");
 		TaskDeleteDAO taskDeleteDAO = new TaskDeleteDAO();
-		int taskId = Integer.parseInt(request.getParameter("taskId"));
+		String[] taskId = (String[])session.getAttribute("taskId");
+		System.out.println(taskId.length);
 		int count = 0;
 		String resultText = "";
+
+		for(String str : taskId) {
+			System.out.println(str);
+		}
 		
 //		タスク削除を実行
 		try {
@@ -51,7 +58,7 @@ public class TaskDeleteServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("resultText", resultText);
-		
+		session.removeAttribute("taskId");
 		rd.forward(request, response);
 	}
 

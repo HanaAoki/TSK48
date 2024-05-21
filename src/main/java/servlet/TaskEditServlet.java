@@ -97,7 +97,7 @@ public class TaskEditServlet extends HttpServlet {
 			resultText = "以下のタスク編集に失敗しました。";
 		}
 		if(count >0) {
-			resultText = count + "以下のタスクを編集しました。";
+			resultText = "以下のタスクを編集しました。";
 		}
 		
 		request.setAttribute("task", task);
