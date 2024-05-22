@@ -92,9 +92,9 @@ public class TaskEditServlet extends HttpServlet {
 		request.setAttribute("task", task);
 		
 		//入力内容が同じな場合、処理をスキップ
-		if(!task.equals(oldTask)) {
-			request.setAttribute("resultText", resultText);
+		if(task.equals(oldTask)) {
 			resultText = "以下のタスクは入力内容が同じです。";
+			request.setAttribute("resultText", resultText);
 			rd.forward(request, response);
 		}
 		

@@ -45,7 +45,7 @@ LocalDate today = LocalDate.now();
 		</select></td>
 	</tr>
 	
-	<tr><th>期限</th><td><input type="date" min="<%=today %>" value="<%=task.getLimitDate()%>" name = "limitDate" required></td></tr>
+	<tr><th>期限</th><td><input type="date" min="<%=today %>" value="<%=task.getLimitDate()%>" name = "limitDate"></td></tr>
 	
 	<tr><th>担当者</th>
 	<td> <select name="userId">

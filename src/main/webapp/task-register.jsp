@@ -52,7 +52,7 @@
 					期限
 				</th>
 				<td>
-					<input type="date" name="taskLimit" min="<%=today %>" value="<%=tomorrow %>" required>
+					<input type="date" name="taskLimit" min="<%=today %>" value="<%=tomorrow %>">
 				</td>
 			</tr>
 			<tr>

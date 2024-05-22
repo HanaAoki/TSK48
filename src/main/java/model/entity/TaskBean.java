@@ -87,6 +87,7 @@ public class TaskBean {
 			return false;
 		TaskBean that = (TaskBean) o;
 		return 	categoryId == that.categoryId &&
+				Objects.equals(taskName, that.taskName) &&
 				Objects.equals(limitDate, that.limitDate) &&
 				Objects.equals(userId, that.userId) &&
 				Objects.equals(statusCode, that.statusCode) &&
