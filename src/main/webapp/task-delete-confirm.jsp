@@ -33,7 +33,7 @@ for(TaskBean t : taskList){
 	<tr><th>担当者</th><td><%=task.getUserName()%></td></tr>
 	<tr><th>ステータス</th><td><%=task.getStatusName()%></td></tr>
 	<tr><th>メモ</th><td><%=task.getMemo()%></td></tr>
-	</table><%=task.getTaskId()%>
+	</table>
 	<br>
 	<%
 	}
