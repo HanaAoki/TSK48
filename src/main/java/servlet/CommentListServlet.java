@@ -37,6 +37,7 @@ public class CommentListServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("taskId", taskId);
 		session.setAttribute("commentList", commentList);
 		
 		rd.forward(request, response);
