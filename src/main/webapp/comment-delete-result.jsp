@@ -12,8 +12,9 @@ String resultText = (String)request.getAttribute("resultText");
 %>
 </head>
 <body>
-<%@ include file="user-name-header.jsp" %>
 <h1><%=resultText%></h1>
+
+<%@ include file="user-name-header.jsp" %>
 <form action="task-list-servlet" method="POST">
 <input type="submit" value="タスク一覧画面へ">
 </form>
