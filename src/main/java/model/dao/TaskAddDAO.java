@@ -28,11 +28,9 @@ public class TaskAddDAO {
 			pstmt.setString(5, taskBean.getStatusCode());
 			pstmt.setString(6, taskBean.getMemo());
 
-			int countAdd = pstmt.executeUpdate();
-
-			return countAdd;
-
+			countAddTask = pstmt.executeUpdate();
 		}
+		return countAddTask;
 	}
 
 }
