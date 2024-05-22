@@ -45,7 +45,12 @@ public class TaskAddServlet extends HttpServlet {
 		// 入力されたものの取得
 		String taskName = request.getParameter("taskName");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-		Date limitDate = Date.valueOf(request.getParameter("taskLimit"));
+		String date = request.getParameter("taskLimit");
+		Date limitDate = null;
+
+		if(!(date.equals(""))) {
+			limitDate = Date.valueOf(date);
+		}
 		String userId = request.getParameter("userId");
 		String statusCode = request.getParameter("statusCode");
 		String memo = request.getParameter("memo");
