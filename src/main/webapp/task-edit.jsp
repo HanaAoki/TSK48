@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="model.entity.TaskBean,model.entity.CategoryBean,model.entity.UserBean,model.entity.StatusBean,java.util.ArrayList,java.util.List"%>
+    import="model.entity.TaskBean,model.entity.CategoryBean,model.entity.UserBean,model.entity.StatusBean,java.util.ArrayList,java.util.List, java.time.LocalDate"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +20,7 @@ List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("cat
 List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 String sd = "";
+LocalDate today = LocalDate.now();
 %>
 <title>タスク編集画面</title>
 </head>
@@ -44,7 +45,7 @@ String sd = "";
 		</select></td>
 	</tr>
 	
-	<tr><th>期限</th><td><input type="date" value="<%=task.getLimitDate()%>" name = "limitDate" required></td></tr>
+	<tr><th>期限</th><td><input type="date" min="<%=today %>" value="<%=task.getLimitDate()%>" name = "limitDate" required></td></tr>
 	
 	<tr><th>担当者</th>
 	<td> <select name="userId">
