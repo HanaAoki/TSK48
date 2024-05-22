@@ -33,20 +33,22 @@ public class TaskEditServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		RequestDispatcher rd = request.getRequestDispatcher("task-edit-result.jsp");//編集完了画面のPath
+		RequestDispatcher rd = request.getRequestDispatcher("task-edit-result.jsp");
 		HttpSession session = request.getSession();
 		
 		TaskEditDAO taskEditDAO = new TaskEditDAO();
+		TaskBean oldTask = (TaskBean)session.getAttribute("task");
 		int count = 0;
 		String resultText = "";
 		
-		//userListは仮、まだ無い。
+		//リストの取得
 		List<CategoryBean> categoryList = (List<CategoryBean>)session.getAttribute("categoryList");
 		List<StatusBean> statusList = (List<StatusBean>)session.getAttribute("statusList");
 		List<UserBean> userList = (List<UserBean>)session.getAttribute("userList");
+		
 		TaskBean task = new TaskBean();
 		
-		//いらないのが含まれているので後で消す。
+		//入力内容の取得、変数の用意
 		int taskId = Integer.parseInt(request.getParameter("taskId"));//取得方法未定
 		String taskName = request.getParameter("taskName");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
@@ -75,7 +77,7 @@ public class TaskEditServlet extends HttpServlet {
 			}
 		}
 		
-		//とりあえず全部入れてる。
+		//TaskBean型へ格納
 		task.setTaskId(taskId);
 		task.setTaskName(taskName);
 		task.setCategoryId(categoryId);
@@ -86,6 +88,15 @@ public class TaskEditServlet extends HttpServlet {
 		task.setStatusCode(statusCode);
 		task.setStatusName(statusName);
 		task.setMemo(memo);
+		
+		request.setAttribute("task", task);
+		
+		//入力内容が同じな場合、処理をスキップ
+		if(!task.equals(oldTask)) {
+			request.setAttribute("resultText", resultText);
+			resultText = "以下のタスクは入力内容が同じです。";
+			rd.forward(request, response);
+		}
 		
 		try {
 			count = taskEditDAO.editTask(task);
@@ -100,7 +111,6 @@ public class TaskEditServlet extends HttpServlet {
 			resultText = "以下のタスクを編集しました。";
 		}
 		
-		request.setAttribute("task", task);
 		request.setAttribute("resultText", resultText);
 		
 		rd.forward(request, response);
