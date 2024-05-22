@@ -20,12 +20,18 @@ List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 		<th><input type="submit" value="削除" formaction="task-delete-confirm.jsp"></th>
 	</tr>
 	<%
+		Object limitDate = "";
 		for(TaskBean task : taskList){
+			if(task.getLimitDate() != null){
+				limitDate = task.getLimitDate();
+			}else{
+				limitDate = "";
+			}
 	%>
 	<tr>
 		<td><%=task.getTaskName()%></td>
 		<td><%=task.getCategoryName()%></td>
-		<td><%=task.getLimitDate()%></td>
+		<td><%=limitDate%></td>
 		<td><%=task.getUserName()%></td>
 		<td><%=task.getStatusName()%></td>
 		<td><%=task.getMemo()%></td>
