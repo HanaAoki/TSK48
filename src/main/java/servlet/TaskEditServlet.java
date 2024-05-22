@@ -31,7 +31,8 @@ public class TaskEditServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher("task-edit-result.jsp");
 		HttpSession session = request.getSession();
@@ -40,7 +41,7 @@ public class TaskEditServlet extends HttpServlet {
 		TaskBean oldTask = (TaskBean)session.getAttribute("task");
 		int count = 0;
 		String resultText = "";
-		
+
 		//リストの取得
 		List<CategoryBean> categoryList = (List<CategoryBean>)session.getAttribute("categoryList");
 		List<StatusBean> statusList = (List<StatusBean>)session.getAttribute("statusList");
@@ -53,7 +54,13 @@ public class TaskEditServlet extends HttpServlet {
 		String taskName = request.getParameter("taskName");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		String categoryName = "";
-		Date limitDate = Date.valueOf(request.getParameter("limitDate"));
+		
+		String date = request.getParameter("limitDate");
+		Date limitDate = null;
+
+		if(!(date.equals(""))) {
+			limitDate = Date.valueOf(date);
+		}
 		String userId = request.getParameter("userId");
 		String userName = "";
 		String statusCode = request.getParameter("statusCode");
