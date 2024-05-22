@@ -46,7 +46,7 @@ public class TaskListDAO {
 				Date limitDate = res.getDate("limit_date");
 				String userId = res.getString("user_id");
 				String userName = res.getString("user_name");
-				String statusCode = res.getString("statua_code");
+				String statusCode = res.getString("status_code");
 				String statusName = res.getString("status_name");
 				String memo = res.getString("memo");
 				
