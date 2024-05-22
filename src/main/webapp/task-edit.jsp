@@ -15,10 +15,11 @@ for(TaskBean t : taskList){
 		break;
 	}
 }
+session.setAttribute("task", task);
 List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
 List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
-String sd = "selected";
+String sd = "";
 %>
 <title>タスク編集画面</title>
 </head>
@@ -31,10 +32,13 @@ String sd = "selected";
 	<tr><th>カテゴリ</th>
 	<td> <select name="categoryId">
 	 <%for (CategoryBean cb : categoryList) {%>
-		<option value="<%=cb.getCategoryId()%>"><%=cb.getCategoryName()%>
-		<%if(){
-			
+	 <%if(cb.getCategoryId() == task.getCategoryId()){
+		 sd = "selected";
+		}else{
+		sd="selected";
 		}%>
+		<option value="<%=cb.getCategoryId()%>"<%=sd%>><%=cb.getCategoryName()%>
+		
 		</option>
 		<% } %>
 		</select></td>
@@ -45,7 +49,12 @@ String sd = "selected";
 	<tr><th>担当者</th>
 	<td> <select name="userId">
 	 <% for (UserBean ub : userList) { %>
-		<option value="<%=ub.getUserId()%>"><%=ub.getUserName()%></option>
+	  <%if(ub.getUserId().equals(task.getUserId())){
+		 sd = "selected";
+		}else{
+		sd="";
+		}%>
+		<option value="<%=ub.getUserId()%>"<%=sd%>><%=ub.getUserName()%></option>
 		<% } %>
 		</select></td>
 		</tr>
@@ -53,7 +62,12 @@ String sd = "selected";
 	<tr><th>ステータス</th>
 	<td> <select name="statusCode">
 	 <% for (StatusBean sb : statusList) { %>
-		<option value="<%=sb.getStatusCode()%>"><%=sb.getStatusName()%></option>
+	  <%if(sb.getStatusCode().equals(task.getStatusCode())){
+		 sd = "selected";
+		}else{
+		sd="";
+		}%>
+		<option value="<%=sb.getStatusCode()%>"<%=sd%>><%=sb.getStatusName()%></option>
 		<% } %>
 		</select></td>
 		</tr>
