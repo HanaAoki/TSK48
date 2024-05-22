@@ -40,3 +40,18 @@ INSERT INTO m_status(status_code, status_name) VALUES ('00', '未着手');
 INSERT INTO m_status(status_code, status_name) VALUES ('50', '着手');
 INSERT INTO m_status(status_code, status_name) VALUES ('99', '完了');
 INSERT INTO t_task(task_name, category_id, limit_date, user_id, status_code, memo) VALUES ('なにかしら', 1, '2024-06-30', 'comsize', '50', 'なにか');
+
+CREATE TABLE t_comment( 
+    comment_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT
+    , task_id INT NOT NULL
+    , FOREIGN KEY (task_id) REFERENCES t_task(task_id)
+    , user_id VARCHAR (24) NOT NULL
+    , FOREIGN KEY (user_id) REFERENCES m_user(user_id)
+    , `comment` VARCHAR (100) NOT NULL
+    , update_datetime TIMESTAMP NOT NULL 
+        ON UPDATE CURRENT_TIMESTAMP DEFAULT current_timestamp
+);
+
+INSERT 
+INTO tsk48.t_comment(task_id, user_id, `comment`) 
+VALUES (1, 'comsize', 'テストコメント');
