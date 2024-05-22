@@ -44,7 +44,9 @@ public class TaskListDAO {
 				int categoryId =res.getInt("category_id");
 				String categoryName = res.getString("category_name");
 				Date limitDate = res.getDate("limit_date");
+				String userId = res.getString("user_id");
 				String userName = res.getString("user_name");
+				String statusCode = res.getString("statua_code");
 				String statusName = res.getString("status_name");
 				String memo = res.getString("memo");
 				
@@ -53,7 +55,9 @@ public class TaskListDAO {
 				task.setCategoryId(categoryId);
 				task.setCategoryName(categoryName);
 				task.setLimitDate(limitDate);
+				task.setUserId(userId);
 				task.setUserName(userName);
+				task.setStatusCode(statusCode);
 				task.setStatusName(statusName);
 				task.setMemo(memo);
 				
