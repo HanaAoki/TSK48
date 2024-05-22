@@ -25,7 +25,7 @@
 			</tr>
 			<%
 				for (int i = 0; i < index.length; i++) {
-				CommentBean commentBean = commentList.get(i);
+				CommentBean commentBean = commentList.get(index[i]);
 				String userName = commentBean.getUserName();
 				String comment = commentBean.getComment();
 			%>
