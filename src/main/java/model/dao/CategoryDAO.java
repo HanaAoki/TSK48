@@ -14,39 +14,28 @@ import model.entity.CategoryBean;
  * @author 青木春菜
  */
 public class CategoryDAO {
-	
-	public List<CategoryBean> selectCategory () throws ClassNotFoundException, SQLException {
-//		返すリストの作成
+
+	public List<CategoryBean> selectCategory() throws ClassNotFoundException, SQLException {
 		List<CategoryBean> categoryList = new ArrayList<CategoryBean>();
-		
-//		sql文
+
 		String sql = "SELECT category_id, category_name FROM m_category";
-		
-//		db接続
+
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
-			
-//			実行
+
 			ResultSet res = pstmt.executeQuery();
-			
-//			取り出してリストに入れる
+
+			// 取り出してリストに入れる
 			while (res.next()) {
-				
-//				categorybeanのインスタンス化
+
 				CategoryBean categoryBean = new CategoryBean();
-				
+
 				categoryBean.setCategoryId(res.getInt("category_id"));
 				categoryBean.setCategoryName(res.getString("category_name"));
-				
+
 				categoryList.add(categoryBean);
 			}
-			
-//			テスト
-//			for (CategoryBean categoryBean : categoryList) {
-//				System.out.println(categoryBean);
-//			}
-			
-//			リストを返す
+
 			return categoryList;
 		}
 	}
