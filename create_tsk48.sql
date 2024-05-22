@@ -35,13 +35,21 @@ FOREIGN KEY(status_code) REFERENCES m_status(status_code));
 
 INSERT INTO m_user(user_id, password, user_name) VALUES ('comsize', 'comsize', 'コンサイズ');
 INSERT INTO m_user(user_id, password, user_name) VALUES ('tanaka', 'tanaka', '山口');
+INSERT INTO m_user(user_id, password, user_name) VALUES ('arino', 'arino', '有野');
+INSERT INTO m_user(user_id, password, user_name) VALUES ('shige', 'shige', '重松');
+INSERT INTO m_user(user_id, password, user_name) VALUES ('aoki', 'aoki', '青木');
 INSERT INTO m_category(category_name) VALUES ('新商品A：開発プロジェクト');
 INSERT INTO m_category(category_name) VALUES ('既存商品B：改良プロジェクト');
+INSERT INTO m_category(category_name) VALUES ('パクリ商品C：法対策プロジェクト');
 INSERT INTO m_status(status_code, status_name) VALUES ('00', '未着手');
 INSERT INTO m_status(status_code, status_name) VALUES ('50', '着手');
 INSERT INTO m_status(status_code, status_name) VALUES ('99', '完了');
+INSERT INTO m_status(status_code, status_name) VALUES ('55', '打ち上げ');
 INSERT INTO t_task(task_name, category_id, limit_date, user_id, status_code, memo) VALUES ('なにかしら', 1, '2024-06-30', 'comsize', '50', 'なにか');
-INSERT INTO t_task(task_name, category_id, limit_date, user_id, status_code, memo) VALUES ('どこかしら', 1, '2024-07-20', 'tanaka', '50', 'あれ');
+INSERT INTO t_task(task_name, category_id, limit_date, user_id, status_code, memo) VALUES ('どこかしら', 3, '2024-07-20', 'tanaka', '50', 'あれ');
+INSERT INTO t_task(task_name, category_id, limit_date, user_id, status_code, memo) VALUES ('担当有野', 2, '2024-06-30', 'arino', '00', 'どっか');
+INSERT INTO t_task(task_name, category_id, limit_date, user_id, status_code, memo) VALUES ('担当重松', 2, '2024-07-20', 'shige', '50', '板');
+INSERT INTO t_task(task_name, category_id, limit_date, user_id, status_code, memo) VALUES ('担当青木', 2, '2024-06-30', 'aoki', '55', '初代');
 
 CREATE TABLE t_comment( 
     comment_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT
@@ -54,12 +62,33 @@ CREATE TABLE t_comment(
         ON UPDATE CURRENT_TIMESTAMP DEFAULT current_timestamp
 );
 
-INSERT 
-INTO tsk48.t_comment(task_id, user_id, `comment`) 
-VALUES (1, 'comsize', 'テストコメント');
-INSERT 
-INTO tsk48.t_comment(task_id, user_id, `comment`) 
-VALUES (1, 'tanaka', 'hi');
-INSERT 
-INTO tsk48.t_comment(task_id, user_id, `comment`) 
-VALUES (2, 'tanaka', 'SO RE NA');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (1, 'comsize', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (1, 'tanaka', 'hi');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (1, 'arino', 'SO RE NA');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (1, 'shige', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (1, 'aoki', 'hi');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (2, 'comsize', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (2, 'tanaka', 'hi');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (2, 'arino', 'SO RE NA');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (2, 'shige', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (2, 'aoki', 'hi');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (3, 'comsize', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (3, 'tanaka', 'hi');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (3, 'arino', 'SO RE NA');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (3, 'arino', 'SO RE NA!');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (3, 'arino', 'SO RE NA!!');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (3, 'shige', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (3, 'aoki', 'hi');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (4, 'comsize', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (4, 'tanaka', 'hi');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (4, 'arino', 'SO RE NA');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (4, 'shige', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (4, 'shige', 'テストコメント!');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (4, 'shige', 'テストコメント!!');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (4, 'aoki', 'hi');INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (1, 'comsize', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (5, 'tanaka', 'hi');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (5, 'arino', 'SO RE NA');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (5, 'shige', 'テストコメント');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (5, 'aoki', 'hi');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (5, 'aoki', 'hi!');
+INSERT INTO tsk48.t_comment(task_id, user_id, `comment`) VALUES (5, 'aoki', 'hi!!');

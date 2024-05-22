@@ -26,8 +26,8 @@ public class TaskListDAO {
 	 */
 	public List<TaskBean> selectAllTask() throws SQLException, ClassNotFoundException{
 		List<TaskBean> taskList = new ArrayList<TaskBean>();
-		String sql = "SELECT t1.task_id, t1.task_name, t3.category_id, t3.category_name, t1.limit_date, t2.user_id, "
-				+ "t2.user_name, t4.status_code, t4.status_name, t1.memo, COUNT(t1.task_id)"
+		String sql = "SELECT t1.task_id, t1.task_name, t3.category_id, t3.category_name, t1.limit_date, t2.user_id, \n"
+				+ "t2.user_name, t4.status_code, t4.status_name, t1.memo, COUNT(t5.comment_id)"
 				+ "FROM t_task t1 "
 				+ "JOIN m_user t2 ON t1.user_id = t2.user_id "
 				+ "JOIN m_category t3 ON t1.category_id = t3.category_id "
@@ -53,7 +53,7 @@ public class TaskListDAO {
 				String statusCode = res.getString("status_code");
 				String statusName = res.getString("status_name");
 				String memo = res.getString("memo");
-				int commentNum = res.getInt("COUNT(t1.task_id)");
+				int commentNum = res.getInt("COUNT(t5.comment_id)");
 				
 				task.setTaskId(taskId);
 				task.setTaskName(taskName);
