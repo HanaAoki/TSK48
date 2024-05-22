@@ -8,7 +8,12 @@
 <%
 List<CommentBean> commentList =(List<CommentBean>) session.getAttribute("commentList");
 UserBean thisUser = (UserBean)session.getAttribute("user");
-String thisUserName = thisUser.getUserName();
+String thisUserName = "ゲスト";
+String thisUserId = null;
+if(thisUser != null){
+	thisUserName = thisUser.getUserName();
+	thisUserId = thisUser.getUserId();
+}
 int taskId = (Integer)request.getAttribute("taskId");
 int index = 0;
 %>
@@ -44,15 +49,21 @@ int index = 0;
 	<input type="reset" value="クリア">
 	</form>
 	
+	<%
+	if(thisUserId != null){
+	%>
 	<form action="comment-add-servlet" method="POST">
 		<input type="hidden" name="taskId" value="<%=taskId%>">
-		<input type="hidden" name="userId" value="<%=thisUser.getUserId()%>"><br>
+		<input type="hidden" name="userId" value="<%=thisUserId%>"><br>
 		
 		<label for="comment">コメント投稿</label><br>
 		<textarea id="comment" name="comment" rows="4" cols="40"></textarea><br>
 
 		<input type="submit" value="投稿">
 	</form>
+	<%
+	}
+	%>
 	
 	<form action="task-list-servlet" method="POST">
 	<input type="submit" value="戻る">
