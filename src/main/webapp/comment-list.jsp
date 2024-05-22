@@ -8,7 +8,10 @@
 <%
 List<CommentBean> commentList =(List<CommentBean>) session.getAttribute("commentList");
 UserBean thisUser = (UserBean)session.getAttribute("user");
-String thisUserName = thisUser.getUserName();
+String thisUserName = "ゲスト";
+if(thisUser != null){
+	thisUserName = thisUser.getUserName();
+}
 int taskId = (Integer)request.getAttribute("taskId");
 int index = 0;
 %>
