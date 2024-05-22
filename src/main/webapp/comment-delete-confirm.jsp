@@ -24,10 +24,12 @@
 				</th>
 			</tr>
 			<%
+				int taskId = 0;
 				for (int i = 0; i < index.length; i++) {
 				CommentBean commentBean = commentList.get(index[i]);
 				String userName = commentBean.getUserName();
 				String comment = commentBean.getComment();
+				taskId = commentBean.getTaskId();
 			%>
 			<tr>
 				<td>
@@ -47,6 +49,12 @@
 	
 	<form action="comment-delete-servlet" method="post">
 		<input type="submit" value="削除">
+	</form>
+	<form action="comment-list-servlet" method="post">
+		<%
+		request.setAttribute("taskId", taskId);
+		%>
+		<input type="submit" value="戻る">
 	</form>
 </body>
 </html>
