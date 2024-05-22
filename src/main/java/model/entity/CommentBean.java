@@ -6,6 +6,7 @@ package model.entity;
 public class CommentBean {
 	private int commentId;
 	private int taskId;
+	private String taskName;
 	private String userId;
 	private String userName;
 	private String comment;
@@ -82,6 +83,20 @@ public class CommentBean {
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	/**
+	 * @return taskName
+	 */
+	public String getTaskName() {
+		return taskName;
+	}
+
+	/**
+	 * @param taskName セットする taskName
+	 */
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
 	}
 	
 	
