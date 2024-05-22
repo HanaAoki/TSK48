@@ -7,6 +7,7 @@ public class CommentBean {
 	private int commentId;
 	private int taskId;
 	private String userId;
+	private String userName;
 	private String comment;
 	
 	public CommentBean() {
@@ -67,6 +68,20 @@ public class CommentBean {
 	 */
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	/**
+	 * @return userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName セットする userName
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	
