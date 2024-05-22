@@ -44,5 +44,22 @@ public class CommentListServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		RequestDispatcher rd = request.getRequestDispatcher("comment-list.jsp");
+		HttpSession session = request.getSession();
+		CommentListDAO cmtListDAO = new CommentListDAO();
+		List<CommentBean> commentList = new ArrayList<CommentBean>();
+		int taskId = (Integer)request.getAttribute("taskId");
+		
+		try {
+			commentList = cmtListDAO.selectCommentList(taskId);
+		}catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("taskId", taskId);
+		session.setAttribute("commentList", commentList);
+		
+		rd.forward(request, response);
 	}
 }
