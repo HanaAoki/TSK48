@@ -57,5 +57,9 @@ CREATE TABLE t_comment(
 INSERT 
 INTO tsk48.t_comment(task_id, user_id, `comment`) 
 VALUES (1, 'comsize', 'テストコメント');
+INSERT 
+INTO tsk48.t_comment(task_id, user_id, `comment`) 
 VALUES (1, 'tanaka', 'hi');
+INSERT 
+INTO tsk48.t_comment(task_id, user_id, `comment`) 
 VALUES (2, 'tanaka', 'SO RE NA');
