@@ -18,6 +18,7 @@ List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 		<th>タスク名</th><th>カテゴリ</th><th>期限</th><th>担当者</th><th>ステータス</th><th>メモ</th>
 		<th><input type="submit" value="編集"></th>
 		<th><input type="submit" value="削除" formaction="task-delete-confirm.jsp"></th>
+		<th>コメント</th>
 	</tr>
 	<%
 		Object limitDate = "";
@@ -40,6 +41,7 @@ List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 		<input type="hidden" name="taskId[]" value="0">
 		<input type="checkbox" name="taskId[]" value="<%=task.getTaskId()%>">
 		</td>
+		<td><a href="comment-list-servlet?taskId=<%=task.getTaskId()%>"><%=task.getCommentNum()%></a></td>
 	</tr>
 	<%
 		}

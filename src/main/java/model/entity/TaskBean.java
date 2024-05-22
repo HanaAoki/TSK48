@@ -14,6 +14,7 @@ public class TaskBean {
 	private String statusCode;
 	private String statusName;
 	private String memo;
+	private int commentNum;
 		
 	public TaskBean() {
 	}
@@ -77,6 +78,12 @@ public class TaskBean {
 	}
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+	public int getCommentNum() {
+		return commentNum;
+	}
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
 	}
 	
 	@Override

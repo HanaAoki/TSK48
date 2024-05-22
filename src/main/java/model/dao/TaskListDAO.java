@@ -26,11 +26,15 @@ public class TaskListDAO {
 	 */
 	public List<TaskBean> selectAllTask() throws SQLException, ClassNotFoundException{
 		List<TaskBean> taskList = new ArrayList<TaskBean>();
-		String sql = "SELECT t1.task_id, t1.task_name, t3.category_id, t3.category_name, t1.limit_date, t2.user_id, t2.user_name, t4.status_code, t4.status_name, t1.memo "
-				+ "FROM t_task AS t1 "
-				+ "JOIN m_user AS t2 ON t1.user_id = t2.user_id "
+		String sql = "SELECT t1.task_id, t1.task_name, t3.category_id, t3.category_name, t1.limit_date, t2.user_id, "
+				+ "t2.user_name, t4.status_code, t4.status_name, t1.memo, COUNT(t1.task_id)"
+				+ "FROM t_task t1 "
+				+ "JOIN m_user t2 ON t1.user_id = t2.user_id "
 				+ "JOIN m_category t3 ON t1.category_id = t3.category_id "
-				+ "JOIN m_status AS t4 ON t1.status_code = t4.status_code";
+				+ "JOIN m_status t4 ON t1.status_code = t4.status_code "
+				+ "JOIN t_comment t5 ON t1.task_id = t5.task_id "
+				+ "GROUP BY  t1.task_id, t1.task_name, t3.category_id, t3.category_name, t1.limit_date, t2.user_id, "
+				+ "t2.user_name, t4.status_code, t4.status_name, t1.memo";
 		
 		try(Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -49,6 +53,7 @@ public class TaskListDAO {
 				String statusCode = res.getString("status_code");
 				String statusName = res.getString("status_name");
 				String memo = res.getString("memo");
+				int commentNum = res.getInt("COUNT(t1.task_id)");
 				
 				task.setTaskId(taskId);
 				task.setTaskName(taskName);
@@ -60,6 +65,7 @@ public class TaskListDAO {
 				task.setStatusCode(statusCode);
 				task.setStatusName(statusName);
 				task.setMemo(memo);
+				task.setCommentNum(commentNum);
 				
 				taskList.add(task);
 			}
