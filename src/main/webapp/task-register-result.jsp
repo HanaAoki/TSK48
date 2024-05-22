@@ -14,10 +14,18 @@ String resultText = (String)request.getAttribute("resultText");
 <h1><%=resultText%></h1>
 <%@ include file="user-name-header.jsp" %>
 <p>
+	<%
+		Object limitDate = "";
+		if(task.getLimitDate() != null){
+			limitDate = task.getLimitDate();
+		}else{
+			limitDate = "";
+		}
+	%>
 	<table border=1>
 	<tr><th>タスク名</th><td><%=task.getTaskName()%></td></tr>
 	<tr><th>カテゴリ</th><td><%=task.getCategoryName()%></td></tr>
-	<tr><th>期限</th><td><%=task.getLimitDate()%></td></tr>
+	<tr><th>期限</th><td><%=limitDate%></td></tr>
 	<tr><th>担当者</th><td><%=task.getUserName()%></td></tr>
 	<tr><th>ステータス</th><td><%=task.getStatusName()%></td></tr>
 	<tr><th>メモ</th><td><%=task.getMemo()%></td></tr>

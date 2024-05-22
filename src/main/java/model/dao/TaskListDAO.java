@@ -32,7 +32,7 @@ public class TaskListDAO {
 				+ "JOIN m_user t2 ON t1.user_id = t2.user_id "
 				+ "JOIN m_category t3 ON t1.category_id = t3.category_id "
 				+ "JOIN m_status t4 ON t1.status_code = t4.status_code "
-				+ "JOIN t_comment t5 ON t1.task_id = t5.task_id "
+				+ "LEFT JOIN t_comment t5 ON t1.task_id = t5.task_id "
 				+ "GROUP BY  t1.task_id, t1.task_name, t3.category_id, t3.category_name, t1.limit_date, t2.user_id, "
 				+ "t2.user_name, t4.status_code, t4.status_name, t1.memo";
 		
