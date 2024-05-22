@@ -54,7 +54,7 @@ public class TaskAddServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String statusCode = request.getParameter("statusCode");
 		String memo = request.getParameter("memo");
-
+		
 		// プルダウンで選ばれたものの名前を取得
 		String categoryName = "";
 		for (CategoryBean category : categoryList) {
