@@ -14,24 +14,25 @@ public class TaskDeleteDAO {
 		}
 		try(Connection con = ConnectionManager.getConnection()) {
 				
-			try(PreparedStatement pstmt = con.prepareStatement(sql)){
-			
-			con.setAutoCommit(false);
-			
-			deleteComment(taskId);
-			
-			for(int i = 0; i < taskId.length; i++) {
-				pstmt.setString(i+1, taskId[i]);
+			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+				con.setAutoCommit(false);
+
+				deleteComment(taskId);
+
+				for (int i = 0; i < taskId.length; i++) {
+					pstmt.setString(i + 1, taskId[i]);
+				}
+
+				count = pstmt.executeUpdate();
+
+				con.commit();
+
+			} catch (SQLException e) {
+				con.rollback();
+				System.out.println("ロールバックしました");
+				e.printStackTrace();
 			}
-			
-			con.commit();
-			
-			 count = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			con.rollback();
-			e.printStackTrace();
-		}
 		
 		}
 		
