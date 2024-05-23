@@ -8,11 +8,13 @@
 <%
 TaskBean task = new TaskBean();
 List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
-int taskId = (int)(request.getAttribute("taskId"));
-for(TaskBean t : taskList){
-	if(t.getTaskId() == taskId){
-		task = t;
-		break;
+Integer taskId = (Integer)(request.getAttribute("taskId"));
+if(taskId != null){
+	for(TaskBean t : taskList){
+		if(t.getTaskId() == taskId){
+			task = t;
+			break;
+		}
 	}
 }
 session.setAttribute("task", task);
@@ -25,8 +27,10 @@ LocalDate today = LocalDate.now();
 <title>タスク編集画面</title>
 </head>
 <body>
+<%
+if(taskId != null){
+%>
 <form action="task-edit-servlet" method="POST">
-
 <table border=1>
 	<tr><th>タスク名</th><td><input type="text" value="<%=task.getTaskName()%>"  name= "taskName" required></td></tr>
 	
@@ -80,7 +84,9 @@ LocalDate today = LocalDate.now();
 	<input type="hidden" name="taskId" value=<%=task.getTaskId()%>>
 	<input type="submit" value="送信">
 	</form>
-	
+<%
+}
+%>
 	<form action="task-list-servlet" method="POST">
 	<input type="submit" value="キャンセル">
 	</form>
