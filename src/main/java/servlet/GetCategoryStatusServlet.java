@@ -36,9 +36,12 @@ public class GetCategoryStatusServlet extends HttpServlet {
 		StatusDAO statusDAO = new StatusDAO();
 
 		UserListDAO userListDAO = new UserListDAO();
-
-		int taskid = Integer.parseInt(request.getParameter("taskId"));
-		request.setAttribute("taskId", taskid);
+		
+		int taskId;
+		if(request.getParameter("taskId") != null) {
+			taskId = Integer.parseInt(request.getParameter("taskId"));
+			request.setAttribute("taskId", taskId);
+		}
 
 		try {
 			// categorybeanとstatusbeanのlistをセッションに入れる
