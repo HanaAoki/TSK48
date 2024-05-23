@@ -14,14 +14,13 @@ public class TaskEditDAO {
 			throws SQLException, ClassNotFoundException {
 
 		int count = 0;
-
-		String sql = "UPDATE t_task "
-				+ "SET task_name = ?, category_id = ?, limit_date = ?, "
-				+ "status_code = ?, user_id = ?, memo = ? "
-				+ "WHERE task_id = ? ";
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE t_task SET task_name = ?, category_id = ?, limit_date = ?, ");
+		sql.append("status_code = ?, user_id = ?, memo = ? WHERE task_id = ? ");
 
 		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)) {
+				PreparedStatement pstmt = con.prepareStatement(sql.toString())) {
 
 			String taskname = confirm.getTaskName();
 			int categoryid = confirm.getCategoryId();

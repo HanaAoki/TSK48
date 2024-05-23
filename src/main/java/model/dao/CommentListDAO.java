@@ -24,14 +24,15 @@ public class CommentListDAO{
 	 */
 	public List<CommentBean> selectCommentList(int taskId) throws SQLException, ClassNotFoundException{
 		List<CommentBean> commentList = new ArrayList<CommentBean>();
-		String sql = "SELECT t1.comment_id, t1.task_id, t2.user_id, t2.user_name, t1.comment, t3.task_name "
-				+ "FROM t_comment t1 "
-				+ "JOIN m_user t2 ON t1.user_id = t2.user_id "
-				+ "JOIN t_task t3 ON t1.task_id = t3.task_id "
-				+ "WHERE t1.task_id = ?";
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT t1.comment_id, t1.task_id, t2.user_id, t2.user_name, t1.comment, t3.task_name ");
+		sql.append("FROM t_comment t1 ");
+		sql.append("JOIN m_user t2 ON t1.user_id = t2.user_id ");
+		sql.append("JOIN t_task t3 ON t1.task_id = t3.task_id ");
+		sql.append("WHERE t1.task_id = ?");
 		
 		try(Connection con = ConnectionManager.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)){
+				PreparedStatement pstmt = con.prepareStatement(sql.toString())){
 			
 			pstmt.setInt(1, taskId);
 			ResultSet res = pstmt.executeQuery();

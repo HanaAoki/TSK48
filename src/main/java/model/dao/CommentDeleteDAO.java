@@ -11,12 +11,13 @@ import java.sql.SQLException;
 public class CommentDeleteDAO {
 	
 	public int deleteComment(int[] commentId)throws SQLException, ClassNotFoundException{
-		String sql = "DELETE FROM t_comment WHERE comment_id = ?";
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM t_comment WHERE comment_id = ?");
 		for(int i = 1; i < commentId.length; i++) {
-			sql += " OR comment_id = ?";
+			sql.append(" OR comment_id = ?");
 		}
 		try(Connection con = ConnectionManager.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)){
+				PreparedStatement pstmt = con.prepareStatement(sql.toString())){
 			
 			for(int i = 0; i < commentId.length; i++) {
 				pstmt.setInt(i+1, commentId[i]);

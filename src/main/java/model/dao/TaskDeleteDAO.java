@@ -8,13 +8,14 @@ public class TaskDeleteDAO {
 	
 	public int deleteTask(String[] taskId)throws ClassNotFoundException, SQLException{
 		int count = 0;
-		String sql = "DELETE FROM t_task WHERE task_id = ?";
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM t_task WHERE task_id = ?");
 		for(int i = 1; i < taskId.length; i++) {
-			sql += " OR task_id = ?";
+			sql.append(" OR task_id = ?");
 		}
 		try(Connection con = ConnectionManager.getConnection()) {
 				
-			try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			try (PreparedStatement pstmt = con.prepareStatement(sql.toString())) {
 
 				con.setAutoCommit(false);
 
@@ -40,12 +41,13 @@ public class TaskDeleteDAO {
 	}
 	
 	public int deleteComment(String[] taskId)throws SQLException, ClassNotFoundException{
-		String sql = "DELETE FROM t_comment WHERE task_id = ?";
+		StringBuilder sql = new StringBuilder();
+		sql.append("DELETE FROM t_task WHERE task_id = ?");
 		for(int i = 1; i < taskId.length; i++) {
-			sql += " OR task_id = ?";
+			sql.append(" OR task_id = ?");
 		}
 		try(Connection con = ConnectionManager.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)){
+				PreparedStatement pstmt = con.prepareStatement(sql.toString())){
 			
 			for(int i = 0; i < taskId.length; i++) {
 				pstmt.setString(i+1, taskId[i]);
