@@ -42,7 +42,7 @@ public class TaskDeleteDAO {
 	
 	public int deleteComment(String[] taskId)throws SQLException, ClassNotFoundException{
 		StringBuilder sql = new StringBuilder();
-		sql.append("DELETE FROM t_task WHERE task_id = ?");
+		sql.append("DELETE FROM t_comment WHERE task_id = ?");
 		for(int i = 1; i < taskId.length; i++) {
 			sql.append(" OR task_id = ?");
 		}
