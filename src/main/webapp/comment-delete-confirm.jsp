@@ -43,16 +43,13 @@
 				}
 				%>
 		</table>
-	<%
-		
-	%>
-	
+
 	<form action="comment-delete-servlet" method="post">
 		<input type="submit" value="削除">
 	</form>
 	<form action="comment-list-servlet" method="post">
 		<%
-		request.setAttribute("taskId", taskId);
+		session.setAttribute("taskId", taskId);
 		%>
 		<input type="submit" value="戻る">
 	</form>

@@ -49,7 +49,8 @@ public class CommentListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		CommentListDAO cmtListDAO = new CommentListDAO();
 		List<CommentBean> commentList = new ArrayList<CommentBean>();
-		int taskId = (Integer)request.getAttribute("taskId");
+		int taskId = (Integer)session.getAttribute("taskId");
+		session.removeAttribute("taskId");	
 		
 		try {
 			commentList = cmtListDAO.selectCommentList(taskId);
