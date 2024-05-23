@@ -10,8 +10,11 @@
 	<%
 		List<CommentBean> commentList = (List) session.getAttribute("commentList");
 		String[] indexS = request.getParameterValues("index");
-		int[] index = Stream.of(indexS).mapToInt(Integer::parseInt).toArray();
-		session.setAttribute("index", index);
+		int[] index;
+		int taskId = 0;
+		if(indexS != null){
+			index = Stream.of(indexS).mapToInt(Integer::parseInt).toArray();
+			session.setAttribute("index", index);
 	%>
 		
 		<table border="1">
@@ -24,12 +27,10 @@
 				</th>
 			</tr>
 			<%
-				int taskId = 0;
 				for (int i = 0; i < index.length; i++) {
 				CommentBean commentBean = commentList.get(index[i]);
 				String userName = commentBean.getUserName();
 				String comment = commentBean.getComment();
-				taskId = commentBean.getTaskId();
 			%>
 			<tr>
 				<td>
@@ -47,10 +48,12 @@
 	<form action="comment-delete-servlet" method="post">
 		<input type="submit" value="削除">
 	</form>
-	<form action="comment-list-servlet" method="post">
-		<%
+	<%
+		}
+		taskId = commentList.get(0).getTaskId();
 		session.setAttribute("taskId", taskId);
-		%>
+	%>
+	<form action="comment-list-servlet" method="post">
 		<input type="submit" value="戻る">
 	</form>
 </body>
