@@ -7,6 +7,15 @@
 <title>タスク一覧画面</title>
 <%
 List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
+UserBean thisUser = (UserBean)session.getAttribute("user");
+String thisUserName = "ゲスト";
+String thisUserId = null;
+if(thisUser != null){
+	thisUserName = thisUser.getUserName();
+	thisUserId = thisUser.getUserId();
+}
+int taskId = (Integer)request.getAttribute("taskId");
+int index = 0;
 %>
 </head>
 <body>
@@ -36,10 +45,17 @@ List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 		<td><%=task.getUserName()%></td>
 		<td><%=task.getStatusName()%></td>
 		<td><%=task.getMemo()%></td>
-		<td><input type="radio" name="taskId" value="<%=task.getTaskId()%>"></td>
-		<td>
+		<td><%
+		if(task.getUserName().equals(thisUserName)){
+			%>
+		<input type="radio" name="taskId" value="<%=task.getTaskId()%>"><%
+		}%></td>
+		<td><%
+		if(task.getUserName().equals(thisUserName)){
+			%>
 		<input type="hidden" name="taskId[]" value="0">
-		<input type="checkbox" name="taskId[]" value="<%=task.getTaskId()%>">
+		<input type="checkbox" name="taskId[]" value="<%=task.getTaskId()%>"><%
+		}%>
 		</td>
 		<td><a href="comment-list-servlet?taskId=<%=task.getTaskId()%>"><%=task.getCommentNum()%></a></td>
 	</tr>
