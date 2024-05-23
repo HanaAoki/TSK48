@@ -36,7 +36,6 @@ public class TaskDeleteServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("task-delete-result.jsp");
 		TaskDeleteDAO taskDeleteDAO = new TaskDeleteDAO();
 		String[] taskId = (String[])session.getAttribute("taskId");
-		System.out.println(taskId.length);
 		int count = 0;
 		String resultText = "";
 		
