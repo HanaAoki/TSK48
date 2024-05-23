@@ -42,7 +42,6 @@ public class TaskDeleteServlet extends HttpServlet {
 		
 //		タスク削除を実行
 		try {
-			taskDeleteDAO.deleteComment(taskId);
 			count = taskDeleteDAO.deleteTask(taskId);
 		}catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
