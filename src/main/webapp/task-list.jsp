@@ -25,8 +25,8 @@ int index = 0;
 	<table border=1>
 	<tr>
 		<th>タスク名</th><th>カテゴリ</th><th>期限</th><th>担当者</th><th>ステータス</th><th>メモ</th>
-		<th><input type="submit" value="編集"></th>
-		<th><input type="submit" value="削除" formaction="task-delete-confirm.jsp"></th>
+		<th>編集</th>
+		<th>削除</th>
 		<th>コメント</th>
 	</tr>
 	<%
@@ -64,6 +64,8 @@ int index = 0;
 	%>
 	</table>
 	<input type="reset" value="クリア">
+	<input type="submit" value="編集">
+	<input type="submit" value="削除" formaction="task-delete-confirm.jsp">
 	</form>
 	<br>
 	<form action="menu.jsp" method="POST">
