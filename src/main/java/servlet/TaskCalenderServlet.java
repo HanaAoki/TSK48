@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,6 +27,40 @@ import model.entity.UserBean;
 public class TaskCalenderServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		RequestDispatcher rd = request.getRequestDispatcher("task-calendar.jsp");
+		
+		UserListDAO userListDAO = new UserListDAO();
+		TaskListDAO taskListDAO = new TaskListDAO();
+		List<UserBean> userList = new ArrayList<UserBean>();
+		List<TaskBean> taskList = new ArrayList<TaskBean>();
+		List<ScheduleBean> scheduleList = new ArrayList<ScheduleBean>();
+		
+		int dayShift = Integer.parseInt(request.getParameter("dayShift"));
+		String dateStr = request.getParameter("date");
+		
+		Date baseDate = Date.valueOf(dateStr);
+		LocalDate shiftDate = baseDate.toLocalDate();
+		shiftDate = shiftDate.plusDays(dayShift);
+		
+		try {
+			userList = userListDAO.userList();
+			taskList = taskListDAO.selectAllTask();
+		}catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		for(UserBean user : userList) {
+			ScheduleBean scedule = new ScheduleBean();
+			scedule.makeSchedule(user.getUserName(), taskList, shiftDate);
+			scheduleList.add(scedule);
+		}
+		
+		request.setAttribute("scheduleList",scheduleList);
+		request.setAttribute("userList",userList);
+		request.setAttribute("date", shiftDate);
+		
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
