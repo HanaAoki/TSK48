@@ -9,13 +9,16 @@
 <body>
 
 <%
-long limit = (long) request.getAttribute("limit");
-if (limit <= 3) {
+UserBean userBean = (UserBean) session.getAttribute("user");
+if (userBean != null) {
+	long limit = (long) request.getAttribute("limit");
+	if (limit <= 3) {
 %>
-<script>
-alert('期限は残り' + <%=limit %> + '日です。');
-</script>
+	<script>
+	alert('期限は残り' + <%=limit %> + '日です。');
+	</script>
 <%
+	}
 }
 %>
 
