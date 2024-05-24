@@ -13,10 +13,10 @@ import java.time.LocalDate;
  */
 public class SelectLimitDateDAO {
 	
-	public Date selectLimitDate(String userId) throws ClassNotFoundException, SQLException {
+	public LocalDate selectLimitDate(String userId) throws ClassNotFoundException, SQLException {
 		LocalDate today = LocalDate.now();
-		Date limitDate = Date.valueOf(today);
-		String sql = "SELECT limit_date FROM t_task WHERE user_id = ?";
+		LocalDate limit = today.plusDays(5);
+		String sql = "SELECT limit_date FROM t_task WHERE limit_date IS NOT NULL AND user_id = ? ORDER BY limit_date DESC";
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -25,10 +25,15 @@ public class SelectLimitDateDAO {
 			
 			ResultSet res = pstmt.executeQuery();
 			while (res.next()) {
-				limitDate = res.getDate("limit_date");
+				Date date = res.getDate("limit_date");
+				limit = date.toLocalDate();
+				if (limit.isAfter(today)) {
+					return limit;
+				}
+				
 			}
 		}
-		return limitDate;
+		return limit;
 	}
 
 }

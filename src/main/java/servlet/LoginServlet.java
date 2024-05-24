@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -59,9 +58,8 @@ public class LoginServlet extends HttpServlet {
 			// 期限までの日数を出してjspに投げる
 			SelectLimitDateDAO selectLimitDateDAO = new SelectLimitDateDAO();
 			LocalDate today = LocalDate.now();
-			Date limitDate = selectLimitDateDAO.selectLimitDate(userId);
-			LocalDate limit = limitDate.toLocalDate();
-			long toLimitDate = ChronoUnit.DAYS.between(today, limit);
+			LocalDate limitDate = selectLimitDateDAO.selectLimitDate(userId);
+			long toLimitDate = ChronoUnit.DAYS.between(today, limitDate);
 			session.setAttribute("limit", toLimitDate);
 		
 		} catch (ClassNotFoundException | SQLException e) {
