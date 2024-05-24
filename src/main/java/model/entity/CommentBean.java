@@ -68,6 +68,7 @@ public class CommentBean {
 	 * @param comment セットする comment
 	 */
 	public void setComment(String comment) {
+		comment = comment.replaceAll("(\r\n|\n)", "<br>");
 		this.comment = comment;
 	}
 
