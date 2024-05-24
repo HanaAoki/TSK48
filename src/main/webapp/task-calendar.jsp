@@ -9,12 +9,16 @@
 List<UserBean> userList = (List<UserBean>)request.getAttribute("userList");
 List<ScheduleBean> scheduleList = (List<ScheduleBean>)request.getAttribute("scheduleList");
 LocalDate date = (LocalDate)request.getAttribute("date");
+SimpleDateFormat yearMonthDay = new SimpleDateFormat("yyyy年M月d日");
 SimpleDateFormat yearMonth = new SimpleDateFormat("yyyy年M月");
 SimpleDateFormat nowDay = new SimpleDateFormat("dd");
 int day = Integer.parseInt(nowDay.format(Date.valueOf(date)));
 %>
 </head>
 <body>
+	<input type="button" value="<">
+	<label><%=yearMonthDay.format(Date.valueOf(date))%></label>
+	<input type="button" value=">">
 	<table border = 1>
 		<tr>
 			<td rowspan="2">従業員</td>

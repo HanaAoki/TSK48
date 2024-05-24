@@ -28,8 +28,13 @@ public class ScheduleBean {
 		for(TaskBean task : taskList) {
 			if(task.getUserName().equals(userName)) {
 				for(int i = 0; i < 7; i++) {
-					limitDate = task.getLimitDate().toLocalDate();
-					if(limitDate.isAfter(date)) {
+					if(task.getLimitDate() != null) {
+						limitDate = task.getLimitDate().toLocalDate();
+						if(limitDate.isAfter(date)) {
+							dayOfTask[i]++;
+						}
+					}
+					if(task.getLimitDate() == null) {
 						dayOfTask[i]++;
 					}
 					date = date.plusDays(1);
