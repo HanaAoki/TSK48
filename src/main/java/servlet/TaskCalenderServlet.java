@@ -39,8 +39,8 @@ public class TaskCalenderServlet extends HttpServlet {
 		int dayShift = Integer.parseInt(request.getParameter("dayShift"));
 		String dateStr = request.getParameter("date");
 		
-		Date baseDate = Date.valueOf(dateStr);
-		LocalDate shiftDate = baseDate.toLocalDate();
+		Date baseDateTime = Date.valueOf(dateStr);
+		LocalDate shiftDate = baseDateTime.toLocalDate();
 		shiftDate = shiftDate.plusDays(dayShift);
 		
 		try {
