@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 			Date limitDate = selectLimitDateDAO.selectLimitDate(userId);
 			LocalDate limit = limitDate.toLocalDate();
 			long toLimitDate = ChronoUnit.DAYS.between(today, limit);
-			request.setAttribute("limit", toLimitDate);
+			session.setAttribute("limit", toLimitDate);
 		
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

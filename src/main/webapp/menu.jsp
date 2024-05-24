@@ -11,7 +11,7 @@
 <%
 UserBean userBean = (UserBean) session.getAttribute("user");
 if (userBean != null) {
-	long limit = (long) request.getAttribute("limit");
+	long limit = (long) session.getAttribute("limit");
 	if (limit <= 3) {
 %>
 	<script>
