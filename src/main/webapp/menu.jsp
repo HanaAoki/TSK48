@@ -26,7 +26,7 @@ if (userBean != null) {
 <form action="get-category-status-servlet" method="POST">
 <input type="submit" value="タスク登録">
 <input type="submit" value="タスク一覧" formaction="task-list-servlet">
-<input type="submit" value="カレンダー" formaction="task-calender-servlet">
+<input type="submit" value="カレンダー" formaction="task-calendar-servlet">
 <input type="submit" value="ログアウト" formaction="logout.jsp">
 </form>
 </body>
