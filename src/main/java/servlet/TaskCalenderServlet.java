@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.TaskListDAO;
 import model.dao.UserListDAO;
@@ -29,11 +30,10 @@ public class TaskCalenderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher("task-calendar.jsp");
+		HttpSession session = request.getSession();
 		
-		UserListDAO userListDAO = new UserListDAO();
-		TaskListDAO taskListDAO = new TaskListDAO();
-		List<UserBean> userList = new ArrayList<UserBean>();
-		List<TaskBean> taskList = new ArrayList<TaskBean>();
+		List<UserBean> userList = (List<UserBean>)session.getAttribute("userList");
+		List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
 		List<ScheduleBean> scheduleList = new ArrayList<ScheduleBean>();
 		
 		int dayShift = Integer.parseInt(request.getParameter("dayShift"));
@@ -42,13 +42,6 @@ public class TaskCalenderServlet extends HttpServlet {
 		Date baseDateTime = Date.valueOf(dateStr);
 		LocalDate shiftDate = baseDateTime.toLocalDate();
 		shiftDate = shiftDate.plusDays(dayShift);
-		
-		try {
-			userList = userListDAO.userList();
-			taskList = taskListDAO.selectAllTask();
-		}catch(SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 		
 		for(UserBean user : userList) {
 			ScheduleBean scedule = new ScheduleBean();
@@ -66,6 +59,7 @@ public class TaskCalenderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher rd = request.getRequestDispatcher("task-calendar.jsp");
+		HttpSession session = request.getSession();
 		
 		UserListDAO userListDAO = new UserListDAO();
 		TaskListDAO taskListDAO = new TaskListDAO();
@@ -89,7 +83,8 @@ public class TaskCalenderServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("scheduleList",scheduleList);
-		request.setAttribute("userList",userList);
+		session.setAttribute("taskList",taskList);
+		session.setAttribute("userList",userList);
 		request.setAttribute("date", currentDate);
 		
 		rd.forward(request, response);

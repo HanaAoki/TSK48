@@ -48,8 +48,6 @@ public class TaskListServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		System.out.println(page);
-		
 		request.setAttribute("page",page);
 		session.setAttribute("taskList", taskList);
 		

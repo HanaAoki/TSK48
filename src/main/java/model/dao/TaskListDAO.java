@@ -89,16 +89,22 @@ public class TaskListDAO {
 		sql.append("LEFT JOIN t_comment t5 ON t1.task_id = t5.task_id ");
 		sql.append("GROUP BY  t1.task_id, t1.task_name, t3.category_id, t3.category_name, t1.limit_date, t2.user_id, ");
 		sql.append("t2.user_name, t4.status_code, t4.status_name, t1.memo ");
-
+		sql.append("LIMIT ? ");
+		
 		if (n > 0) {
-			sql.append("HAVING t1.task_id > " + (n * num));
+			sql.append("OFFSET ?");
 		}
 
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql.toString())) {
-
+			
+			pstmt.setInt(1, num);if (n > 0) {
+				pstmt.setInt(2, (n * num));
+			}
+			
+			
 			ResultSet res = pstmt.executeQuery();
-
+			
 			for (int i = 0; i < num & res.next(); i++) {
 				TaskBean task = new TaskBean();
 				int taskId = res.getInt("task_id");

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%
-List<UserBean> userList = (List<UserBean>)request.getAttribute("userList");
+List<UserBean> userList = (List<UserBean>)session.getAttribute("userList");
 List<ScheduleBean> scheduleList = (List<ScheduleBean>)request.getAttribute("scheduleList");
 LocalDate date = (LocalDate)request.getAttribute("date");
 String dateStr = date.toString();
@@ -42,9 +42,9 @@ date = date.minusMonths(1);
 </head>
 <body>
 	<%@ include file="user-name-header.jsp" %><br>
-	<a href="task-calendar-servlet?dayShift=-1&date=<%=dateStr%>">&lt;</a>
+	<a href="task-calendar-servlet?dayShift=-7&date=<%=dateStr%>">&lt;</a>
 	<label><%=date.format(yearMonthDay)%></label>
-	<a href="task-calendar-servlet?dayShift=1&date=<%=dateStr%>">&gt;</a>
+	<a href="task-calendar-servlet?dayShift=7&date=<%=dateStr%>">&gt;</a>
 	<table border = 1>
 		<tr>
 			<td rowspan="2">従業員</td>

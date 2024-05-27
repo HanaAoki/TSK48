@@ -34,9 +34,9 @@ public class ScheduleBean {
 							dayOfTask[i]++;
 						}
 					}
-					if(task.getLimitDate() == null) {
-						dayOfTask[i]++;
-					}
+//					if(task.getLimitDate() == null) {
+//						dayOfTask[i]++;
+//					}
 					date = date.plusDays(1);
 				}
 			}
