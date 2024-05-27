@@ -59,8 +59,9 @@ public class LoginServlet extends HttpServlet {
 			SelectLimitDateDAO selectLimitDateDAO = new SelectLimitDateDAO();
 			LocalDate today = LocalDate.now();
 			LocalDate limitDate = selectLimitDateDAO.selectLimitDate(userId);
-			long toLimitDate = ChronoUnit.DAYS.between(today, limitDate);
-			session.setAttribute("limit", toLimitDate);
+			Long toLimitDate = ChronoUnit.DAYS.between(today, limitDate);
+			System.out.println(limitDate + " " + toLimitDate);
+			request.setAttribute("limit", toLimitDate);
 		
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

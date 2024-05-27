@@ -11,13 +11,15 @@
 <%
 UserBean userBean = (UserBean) session.getAttribute("user");
 if (userBean != null) {
-	long limit = (long) session.getAttribute("limit");
-	if (limit <= 3) {
+	if ((Long) request.getAttribute("limit") != null) {
+		Long limit = (Long) request.getAttribute("limit");
+		if (limit <= 3) {
 %>
 	<script>
 	alert('期限は残り' + <%=limit %> + '日です。');
 	</script>
 <%
+		}
 	}
 }
 %>
