@@ -24,6 +24,36 @@ import model.entity.TaskBean;
 @WebServlet("/task-list-servlet")
 public class TaskListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
+		HttpSession session = request.getSession();
+		
+		int pageNum = Integer.parseInt(request.getParameter("page"));
+		int n = Integer.parseInt(request.getParameter("count"));
+		
+		int page = pageNum + n;
+		if(page < 0) {
+			page = 0;
+		}
+		
+		TaskListDAO taskListDao = new TaskListDAO();
+		List<TaskBean> taskList = new ArrayList<TaskBean>();
+		
+		try {
+			taskList = taskListDao.selectSomeTask(page);
+			if(taskList.size() == 0) {
+				taskList = taskListDao.selectSomeTask(--page);
+			}
+		}catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(page);
+		
+		request.setAttribute("page",page);
+		session.setAttribute("taskList", taskList);
+		
+		rd.forward(request, response);
 	}
 
 	
@@ -41,7 +71,7 @@ public class TaskListServlet extends HttpServlet {
 		
 		//タスク一覧の取得、格納
 		try {
-			taskList = taskListDao.selectAllTask();
+			taskList = taskListDao.selectSomeTask();
 		}catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}

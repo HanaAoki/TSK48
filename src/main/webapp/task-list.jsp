@@ -16,6 +16,10 @@ if(thisUser != null){
 }
 int taskId = (Integer)request.getAttribute("taskId");
 int index = 0;
+Integer pageNum = (Integer)request.getAttribute("page");
+if(pageNum==null){
+	pageNum = 0;
+}
 %>
 <script type="text/javascript">
     const updateButtonStates = () => {
@@ -71,8 +75,9 @@ int index = 0;
 </script>
 </head>
 <body>
-<%@ include file="user-name-header.jsp" %>
-<p>
+<%@ include file="user-name-header.jsp" %><br>
+	<a href="task-list-servlet?page=<%=pageNum%>&count=-1">&lt;前</a>
+	<a href="task-list-servlet?page=<%=pageNum%>&count=1">次&gt;</a><br>
     <form action="get-category-status-servlet" method="GET">
     <table border=1>
     <tr>
