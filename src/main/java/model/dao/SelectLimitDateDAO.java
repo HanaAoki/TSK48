@@ -15,13 +15,15 @@ public class SelectLimitDateDAO {
 	
 	public LocalDate selectLimitDate(String userId) throws ClassNotFoundException, SQLException {
 		LocalDate today = LocalDate.now();
+		Date todayDate = Date.valueOf(today);
 		LocalDate limit = today.plusDays(5);
-		String sql = "SELECT limit_date FROM t_task WHERE limit_date IS NOT NULL AND user_id = ? ORDER BY limit_date DESC";
+		String sql = "SELECT limit_date FROM t_task WHERE limit_date IS NOT NULL AND limit_date > ? AND user_id = ? ORDER BY limit_date DESC";
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			
-			pstmt.setString(1, userId);
+			pstmt.setDate(1, todayDate);
+			pstmt.setString(2, userId);
 			
 			ResultSet res = pstmt.executeQuery();
 			while (res.next()) {
