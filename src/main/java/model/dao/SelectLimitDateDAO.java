@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 期限の日を取り出すためのDAOです。
@@ -13,7 +15,8 @@ import java.time.LocalDate;
  */
 public class SelectLimitDateDAO {
 	
-	public LocalDate selectLimitDate(String userId) throws ClassNotFoundException, SQLException {
+	public List<LocalDate> selectLimitDate(String userId) throws ClassNotFoundException, SQLException {
+		List<LocalDate> limitList = new ArrayList<LocalDate>();
 		LocalDate today = LocalDate.now();
 		LocalDate yesterday = today.minusDays(1);
 		Date yesterdayDate = Date.valueOf(yesterday);
@@ -30,13 +33,10 @@ public class SelectLimitDateDAO {
 			while (res.next()) {
 				Date date = res.getDate("limit_date");
 				limit = date.toLocalDate();
-				if (limit.isAfter(yesterday)) {
-					return limit;
-				}
-				
+				limitList.add(limit);
 			}
 		}
-		return limit;
+		return limitList;
 	}
 
 }
