@@ -21,6 +21,7 @@ class CommentListDAOTest {
 	
 	static List<String[]> data = new ArrayList<String[]>();
 	static CommentListDAO dao = new CommentListDAO();
+	static List<CommentBean> commentList = new ArrayList<CommentBean>();
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -29,7 +30,7 @@ class CommentListDAOTest {
 		BufferedReader br = null;
 		
 		try {
-			fi = new FileInputStream("C:\\Users\\S-01\\Desktop\\commentList.csv");
+			fi = new FileInputStream("commentList.csv");
 			is = new InputStreamReader(fi);
 			br = new BufferedReader(is);
 			
@@ -66,11 +67,11 @@ class CommentListDAOTest {
 
 	@AfterEach
 	void tearDown() throws Exception {
+		commentList = null;
 	}
 
 	@Test
 	void testGetCommentList() {
-		List<CommentBean> commentList = new ArrayList<CommentBean>();
 		try {
 			commentList = dao.selectCommentList(1);
 		}catch(SQLException | ClassNotFoundException e){

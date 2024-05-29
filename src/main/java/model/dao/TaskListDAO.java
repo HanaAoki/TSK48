@@ -98,7 +98,8 @@ public class TaskListDAO {
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql.toString())) {
 			
-			pstmt.setInt(1, num);if (n > 0) {
+			pstmt.setInt(1, num);
+			if (n > 0) {
 				pstmt.setInt(2, (n * num));
 			}
 			
