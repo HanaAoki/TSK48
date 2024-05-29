@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,9 +59,18 @@ public class LoginServlet extends HttpServlet {
 			// 期限までの日数を出してjspに投げる
 			SelectLimitDateDAO selectLimitDateDAO = new SelectLimitDateDAO();
 			LocalDate today = LocalDate.now();
-			LocalDate limitDate = selectLimitDateDAO.selectLimitDate(userId);
+			LocalDate yesterday = today.minusDays(1);
+			LocalDate limitDate = today.plusDays(5);
+			List<LocalDate> limitList = selectLimitDateDAO.selectLimitDate(userId);
+			for (LocalDate localDate : limitList) {
+				if (localDate.isAfter(yesterday)) {
+					limitDate = localDate;
+					break;
+				}
+			}
+			
 			Long toLimitDate = ChronoUnit.DAYS.between(today, limitDate);
-			System.out.println(limitDate + " " + toLimitDate);
+//			System.out.println(limitDate + " " + toLimitDate);
 			request.setAttribute("limit", toLimitDate);
 		
 		} catch (ClassNotFoundException | SQLException e) {
