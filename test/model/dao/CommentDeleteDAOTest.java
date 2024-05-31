@@ -25,6 +25,10 @@ class CommentDeleteDAOTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
 		try (Connection con = ConnectionManager.getConnection();
 				Statement stmt = con.createStatement()) {
 			String sql = "DROP TABLE t_comment";
@@ -35,10 +39,6 @@ class CommentDeleteDAOTest {
 			stmt.executeUpdate(sql2);
 			stmt.executeUpdate(sql3);
 		}
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
 	}
 
 	@Test
