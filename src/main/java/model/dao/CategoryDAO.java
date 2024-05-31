@@ -18,7 +18,7 @@ public class CategoryDAO {
 	public List<CategoryBean> selectCategory() throws ClassNotFoundException, SQLException {
 		List<CategoryBean> categoryList = new ArrayList<CategoryBean>();
 
-		String sql = "SELECT category_id, category_name FROM m_category";
+		String sql = "SELECT category_id, category_name FROM m_category ORDER BY category_id ASC";
 
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
