@@ -79,7 +79,7 @@ class TaskListDAOTest {
 		}catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		for(int i = 0; i < taskList.size(); i++) {
 			assertEquals(Integer.parseInt(data.get(i)[0]), taskList.get(i).getTaskId());
 			assertEquals(data.get(i)[1], "\"" + taskList.get(i).getTaskName() + "\"");
@@ -126,26 +126,25 @@ class TaskListDAOTest {
 	void testSelectSomeTaskNoVoid() {
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
 
-		for (int n = 0; n <= 1; n++) {
-			try {
-				taskList = dao.selectSomeTask(n);
-			} catch (SQLException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			for (int i = n * 2; i < 2; i++) {
-				assertEquals(Integer.parseInt(data.get(i)[0]), taskList.get(i).getTaskId());
-				assertEquals(data.get(i)[1], "\"" + taskList.get(i).getTaskName() + "\"");
-				assertEquals(Integer.parseInt(data.get(i)[2]), taskList.get(i).getCategoryId());
-				assertEquals(data.get(i)[3], "\"" + taskList.get(i).getCategoryName() + "\"");
-				assertEquals(data.get(i)[4], dateformat.format(taskList.get(i).getLimitDate()));
-				assertEquals(data.get(i)[5], "\"" + taskList.get(i).getUserId() + "\"");
-				assertEquals(data.get(i)[6], "\"" + taskList.get(i).getUserName() + "\"");
-				assertEquals(data.get(i)[7], "\"" + taskList.get(i).getStatusCode() + "\"");
-				assertEquals(data.get(i)[8], "\"" + taskList.get(i).getStatusName() + "\"");
-				assertEquals(data.get(i)[9], "\"" + taskList.get(i).getMemo() + "\"");
-				assertEquals(Integer.parseInt(data.get(i)[10]), taskList.get(i).getCommentNum());
-			}
+		int n = 1;
+		try {
+			taskList = dao.selectSomeTask(n);
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < 2; i++) {
+			assertEquals(Integer.parseInt(data.get(n * 2 + i)[0]), taskList.get(i).getTaskId());
+			assertEquals(data.get(n * 2 + i)[1], "\"" + taskList.get(i).getTaskName() + "\"");
+			assertEquals(Integer.parseInt(data.get(n * 2 + i)[2]), taskList.get(i).getCategoryId());
+			assertEquals(data.get(n * 2 + i)[3], "\"" + taskList.get(i).getCategoryName() + "\"");
+			assertEquals(data.get(n * 2 + i)[4], dateformat.format(taskList.get(i).getLimitDate()));
+			assertEquals(data.get(n * 2 + i)[5], "\"" + taskList.get(i).getUserId() + "\"");
+			assertEquals(data.get(n * 2 + i)[6], "\"" + taskList.get(i).getUserName() + "\"");
+			assertEquals(data.get(n * 2 + i)[7], "\"" + taskList.get(i).getStatusCode() + "\"");
+			assertEquals(data.get(n * 2 + i)[8], "\"" + taskList.get(i).getStatusName() + "\"");
+			assertEquals(data.get(n * 2 + i)[9], "\"" + taskList.get(i).getMemo() + "\"");
+			assertEquals(Integer.parseInt(data.get(n * 2 + i)[10]), taskList.get(i).getCommentNum());
 		}
 	}
-
 }
